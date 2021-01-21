@@ -27,6 +27,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('/administration', [App\Http\Controllers\AdminPanelController::class, 'index'])->middleware(['auth', 'admin'])->name('admin.panel');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
