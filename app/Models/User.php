@@ -20,6 +20,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'com_register',
+        'caen_code',
+        'address',
+        'user_role',
+        'cif',
     ];
 
     /**

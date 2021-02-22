@@ -15,6 +15,7 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->unique();
+            $table->string('address');
             $table->string('caen_code');
             $table->string('cif')->unique();
             $table->string('com_register')->unique();
@@ -33,6 +34,7 @@ class UpdateUsersTable extends Migration
             $table->dropUnique('cif');
             $table->dropUnique('com_register');
             $table->dropColumn('caen_code');
+            $table->dropColumn('address');
         });
     }
 }

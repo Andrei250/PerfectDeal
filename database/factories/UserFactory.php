@@ -40,6 +40,7 @@ class UserFactory extends Factory
             'phone' => $this->faker->unique()->phoneNumber,
             'cif' => $this->faker->unique()->word,
             'com_register' => $this->faker->unique()->word,
+            'address' => $this->faker->sentence,
         ];
     }
 }
