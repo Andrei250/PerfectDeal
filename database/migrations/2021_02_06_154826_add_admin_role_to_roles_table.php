@@ -27,6 +27,6 @@ class AddAdminRoleToRolesTable extends Migration
      */
     public function down()
     {
-        //
+        DB::table('roles')->where("slug" , '=',  'admin')->delete();
     }
 }
