@@ -21,7 +21,9 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>Butoane</td>
+                                    <td>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </td>
                                 </tr>
                             @empty
                                 <p>No user found!</p>

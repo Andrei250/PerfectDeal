@@ -12,4 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin/panel', [AdminController::class, 'index'])->middleware('admin')->name('admin.panel');
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel');
+
+});
