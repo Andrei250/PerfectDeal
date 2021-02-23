@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class);
     }
+
+    public function checkAdminStatus(): bool
+    {
+        return $this->user_role == 1;
+    }
 }

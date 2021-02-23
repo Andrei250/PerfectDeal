@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -47,12 +48,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'string', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'unique:users'],
+            'address' => ['required', 'string'],
+            'caen_code' => ['required', 'string'],
+            'cif' => ['required', 'string', 'unique:users'],
+            'com_reg' => ['required', 'string', 'unique:users,com_register'],
         ]);
     }
 
@@ -62,12 +68,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'caen_code' => $data['caen_code'],
+            'cif' => $data['cif'],
+            'com_register' => $data['com_reg'],
+            'user_role' => (new Role())->getIdOfRole('guest'),
         ]);
     }
 }
