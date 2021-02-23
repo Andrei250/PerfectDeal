@@ -5,6 +5,18 @@
         <div class="row">
             @if (!is_null($users) && count($users) > 0)
                 <div class="col col-md-10 bg-white rounded mx-auto p-0">
+                    @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
+
                     <table class="w-100 table table-striped m-0 p-0">
                         <thead>
                             <tr>
@@ -22,7 +34,13 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <button class="btn btn-danger">Delete</button>
+                                        <form method="POST" action="{{route('admin.deleteUser', ['user' => $user])}}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+
+                                            <input type="submit" class="btn btn-danger" value="Delete">
+
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

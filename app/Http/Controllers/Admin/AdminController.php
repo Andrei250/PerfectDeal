@@ -18,4 +18,15 @@ class AdminController extends Controller
 
         return view('admin.index', ['users' => $users]);
     }
+
+    public function deleteUser(Request $request, User $user) {
+        try {
+            $user->delete();
+        } catch (\Exception $e) {
+            //TODO: logs!!
+            return redirect()->back()->with('error', 'A aparut o eroare');
+        }
+
+        return redirect()->back()->with('success', 'Utilizator sters cu succes!');
+    }
 }

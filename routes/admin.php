@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel');
 
+    Route::delete('/admin/panel/delete/{user:name}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 });
