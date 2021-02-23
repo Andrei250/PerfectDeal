@@ -35,11 +35,10 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <form method="POST" action="{{route('admin.deleteUser', ['user' => $user])}}">
-                                            {{ csrf_field() }}
+                                            @csrf
                                             {{ method_field('DELETE') }}
 
-                                            <input type="submit" class="btn btn-danger" value="Delete">
-
+                                            <input type="submit" class="btn btn-danger delete-user" value="Delete">
                                         </form>
                                     </td>
                                 </tr>
@@ -62,4 +61,20 @@
 
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+    <script>
+        $(document).ready(function(e) {
+            $('.delete-user').on('click', function(e){
+                e.preventDefault() // Don't post the form, unless confirmed
+                e.stopPropagation()
+                if (confirm('Esti sigur ca vrei sa stergi acest user?')) {
+                    // Post the form
+                    $(e.target).closest('form').submit() // Post the surrounding form
+                }
+            });
+        });
+    </script>
 @endsection
