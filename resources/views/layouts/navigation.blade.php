@@ -15,6 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @if (\Illuminate\Support\Facades\Auth::user()->checkAdminStatus())
+
+                        <x-nav-link :href="route('panel')" :active="request()->routeIs('panel')">
+                            {{ __('Admin Panel') }}
+                        </x-nav-link>
+
+                    @endif
                 </div>
             </div>
 
