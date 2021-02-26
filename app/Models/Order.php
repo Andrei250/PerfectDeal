@@ -16,7 +16,8 @@ class Order extends Model
         'expire_date',
         'status',
         'min_quantity',
-        'user_id'
+        'user_id',
+        'img_path'
     ];
 
     protected $table = 'orders';
