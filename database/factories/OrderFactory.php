@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory
@@ -26,12 +27,12 @@ class OrderFactory extends Factory
             'description' => $this->faker->text,
             'quantity' => $this->faker->numberBetween(100000, 30000000),
             'expire_date' => now(),
-            'status' => 'opened',
+            'status' => 'Available',
             'min_quantity' => $this->faker->numberBetween(0, 100000),
-            'user_id' => $this->faker->numberBetween(1, 31),
+            'user_id' => User::all()->random()->id,
             'created_at' => now(),
             'updated_at' => now(),
-            'img_path' => 'storage/uploads/orders/default_order.png'
+            'img_path' => 'uploads/orders/default_order.png'
         ];
     }
 }

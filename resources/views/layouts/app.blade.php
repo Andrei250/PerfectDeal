@@ -115,7 +115,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="add-new-product-form" action="" method="POST" enctype="multipart/form-data">
+                    <form id="add-new-product-form" action="{{route('company.addNewOrder')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -136,9 +136,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriere') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" required autofocus>
-                                    {{ old('description') }}
-                                </textarea>
+                                <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" required autofocus>{{ old('description') }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -166,7 +164,7 @@
                             <label for="min_quantity" class="col-md-4 col-form-label text-md-right">{{ __('Cantitate minima de cumparare') }}</label>
 
                             <div class="col-md-6">
-                                <input id="min_quantity" type="number" class="form-control @error('min_quantity') is-invalid @enderror" name="min_quantity" value="{{ old('min-quantity') }}" required autofocus>
+                                <input id="min_quantity" type="number" class="form-control @error('min_quantity') is-invalid @enderror" name="min_quantity" value="{{ old('min_quantity') }}" required autofocus>
 
                                 @error('min_quantity')
                                     <span class="invalid-feedback" role="alert">

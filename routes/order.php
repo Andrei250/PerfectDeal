@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/orders', [OrderController::class, 'index'])->name('company.orders');
+
+    Route::post('/company/add-new-product', [OrderController::class, 'addNewOrder'])->name('company.addNewOrder');
 });
