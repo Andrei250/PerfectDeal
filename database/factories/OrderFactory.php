@@ -31,6 +31,7 @@ class OrderFactory extends Factory
             'user_id' => $this->faker->numberBetween(1, 31),
             'created_at' => now(),
             'updated_at' => now(),
+            'img_path' => 'storage/uploads/orders/default_order.png'
         ];
     }
 }

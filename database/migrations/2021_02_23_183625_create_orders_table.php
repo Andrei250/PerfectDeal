@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->integer('quantity');
             $table->timestamp('expire_date');
             $table->string('status');
+            $table->string('img_path');
             $table->integer('min_quantity');
             $table->unsignedBigInteger('user_id');
 
