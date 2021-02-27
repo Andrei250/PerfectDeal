@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Orders Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can declare routes for orders.
