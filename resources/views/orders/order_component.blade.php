@@ -10,6 +10,7 @@
             <p class="text-md-left my-2"> Stoc: {{!is_null($order) ? $order->getQuantity() : "Fara Cantitate"}}</p>
             <p class="text-md-left my-2"> Cantitate minima: {{!is_null($order) ? $order->getMinQuantity() : "Fara Cantitate Minima"}}</p>
             <p class="text-md-left my-2"> Expira la: {{!is_null($order) ? $order->getExpireDate() : "Nu are data de expirare"}}</p>
+            <p class="text-md-left my-2"> Pret: {{!is_null($order) ? $order->getPrice() : "Fara pret"}}</p>
 
             <div class="w-100 mt-auto">
                 <div class="float-right">
