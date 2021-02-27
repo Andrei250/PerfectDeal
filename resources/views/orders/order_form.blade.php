@@ -81,6 +81,14 @@
     </div>
 </div>
 
+@if (isset($img_path))
+    <div class="col col-md-4">
+        Imagine curenta:<br>
+        <img src="{{$img_path}}" class="img-fluid"/>
+    </div>
+
+@endif
+
 <div class="custom-file">
     <input type="file" class="custom-file-input" id="{{$icon}}" name="{{$icon}}">
     <label class="custom-file-label" for="{{$icon}}">Poza</label>

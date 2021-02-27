@@ -30,6 +30,7 @@
                                                 'price' => 'price-order',
                                                 'expire_date' => 'expire_date-order',
                                                 'icon' => 'icon_order',
+                                                'img_path' => asset($order->img_path),
                                                 'first_title' => $order->title,
                                                 'first_description' => $order->description,
                                                 'first_quantity' => $order->quantity,
