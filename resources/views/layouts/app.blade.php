@@ -178,6 +178,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Pret per unitate') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autofocus>
+
+                                @error('price')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="expire_date" class="col-md-4 col-form-label text-md-right">{{ __('Data expirarii') }}</label>
                             <div class="col-md-6">
                                 <input class="form-control @error('expire_date') is-invalid @enderror" type="date" id="expire_date" name="expire_date" required autofocus>

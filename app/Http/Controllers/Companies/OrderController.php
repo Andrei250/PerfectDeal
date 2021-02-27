@@ -4,21 +4,27 @@ namespace App\Http\Controllers\Companies;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function index() {
-        return view('orders.orders');
+        $orders = Order::where(['status' => 'Available'])->orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('orders.newsfeed', ['orders' => $orders]);
     }
 
-    public function addNewOrder(Request $request) {
+    public function addNewOrder(Request $request): RedirectResponse
+    {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
             'quantity' => 'required',
             'min_quantity' => 'required|lte:quantity',
             'expire_date' => 'required|date|after:yesterday',
+            'price' => 'required'
         ]);
 
         $order = new Order();
@@ -27,7 +33,8 @@ class OrderController extends Controller
             $request->get('description'),
             $request->get('quantity'),
             $request->get('min_quantity'),
-            $request->get('expire_date'));
+            $request->get('expire_date'),
+            $request->get('price'));
 
         if ($request->hasFile('icon')) {
             $path = $request['icon']->store('public/uploads/orders');
@@ -36,7 +43,7 @@ class OrderController extends Controller
 
         try {
             $order->save();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'A aparut o eroare');
         }
 
