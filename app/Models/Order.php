@@ -30,7 +30,7 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function builder($title, $description, $quantity, $min_quantity, $expire_date) {
+    public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {
         $this->title = $title;
         $this->description = $description;
         $this->quantity = $quantity;
@@ -41,6 +41,7 @@ class Order extends Model
         $this->user_id = Auth::user()->id;
         $this->created_at = now();
         $this->updated_at = now();
+        $this->price = $price;
     }
 
     public function getTitle(): string

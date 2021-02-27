@@ -24,6 +24,7 @@ class OrderController extends Controller
             'quantity' => 'required',
             'min_quantity' => 'required|lte:quantity',
             'expire_date' => 'required|date|after:yesterday',
+            'price' => 'required'
         ]);
 
         $order = new Order();
@@ -32,7 +33,8 @@ class OrderController extends Controller
             $request->get('description'),
             $request->get('quantity'),
             $request->get('min_quantity'),
-            $request->get('expire_date'));
+            $request->get('expire_date'),
+            $request->get('price'));
 
         if ($request->hasFile('icon')) {
             $path = $request['icon']->store('public/uploads/orders');
