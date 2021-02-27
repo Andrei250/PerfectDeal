@@ -126,7 +126,13 @@
                                                         'quantity' => 'quantity',
                                                         'min_quantity' => 'min_quantity',
                                                         'price' => 'price',
-                                                        'expire_date' => 'expire_date'])
+                                                        'expire_date' => 'expire_date',
+                                                        'first_title' => '',
+                                                        'first_description' => '',
+                                                        'first_quantity' => '',
+                                                        'first_min_quantity' => '',
+                                                        'first_price' => '',
+                                                        'first_expire_date' => ''])
 
                     </form>
                 </div>
