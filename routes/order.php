@@ -18,4 +18,8 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::post('/company/add_new_order', [OrderController::class, 'addNewOrder'])->name('company.addNewOrder');
 
     Route::delete('/company/delete_order/{order}', [OrderController::class, 'deleteOrder'])->name('company.deleteOrder');
+
+    Route::get('/company/change/{order}', [OrderController::class, 'showOrder'])->name('company.showOrder');
+
+    Route::post('/company/modify/{order}', [OrderController::class, 'modifyOrder'])->name('company.modifyOrder');
 });

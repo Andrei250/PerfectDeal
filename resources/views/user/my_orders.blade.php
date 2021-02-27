@@ -33,9 +33,11 @@
                                 <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $order->title }}</td>
                                 <td>
-                                    <button class="btn btn-primary float-left">
-                                        Modifica
-                                    </button>
+                                    <a href="{{route('company.showOrder', ['order' => $order])}}">
+                                        <button class="btn btn-primary float-left">
+                                            Modifica
+                                        </button>
+                                    </a>
                                     <form class="float-left ml-2" method="POST" action="{{route('company.deleteOrder', ['order' => $order])}}">
                                         @csrf
                                         {{ method_field('DELETE') }}

@@ -7,6 +7,7 @@ use App\Models\Order;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -18,14 +19,7 @@ class OrderController extends Controller
 
     public function addNewOrder(Request $request): RedirectResponse
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'quantity' => 'required',
-            'min_quantity' => 'required|lte:quantity',
-            'expire_date' => 'required|date|after:yesterday',
-            'price' => 'required'
-        ]);
+        $this->validateRequest($request);
 
         $order = new Order();
 
@@ -60,4 +54,32 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Comanda stearsa cu succes!');
     }
+
+    public function modifyOrder(Order $order) {
+        if (Auth::user()->id != $order->user_id) {
+            return redirect('home');
+        }
+
+    }
+
+    public function showOrder(Order $order) {
+        if (Auth::user()->id != $order->user_id) {
+            return redirect('home');
+        }
+
+        return view('orders.modify_order', ['order' => $order]);
+    }
+
+    private function validateRequest(Request $request): array
+    {
+        return $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'quantity' => 'required',
+            'min_quantity' => 'required|lte:quantity',
+            'expire_date' => 'required|date|after:yesterday',
+            'price' => 'required'
+        ]);
+    }
+
 }
