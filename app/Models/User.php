@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->user_role == 1;
     }
+
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }
