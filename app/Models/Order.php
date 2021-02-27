@@ -41,4 +41,58 @@ class Order extends Model
         $this->created_at = now();
         $this->updated_at = now();
     }
+
+    public function getTitle(): string
+    {
+        if (isset($order) && isset($order->title) && !is_null($order->title)) {
+            return $order->title;
+        }
+
+        return 'Fara titlu';
+    }
+
+    public function getDescription(): string
+    {
+        if (isset($order) && isset($order->description) && !is_null($order->description)) {
+            return $order->description;
+        }
+
+        return 'Fara descriere';
+    }
+
+    public function getQuantity(): string
+    {
+        if (isset($order) && isset($order->quantity) && !is_null($order->quantity)) {
+            return $order->quantity;
+        }
+
+        return 'Fara cantitate';
+    }
+
+    public function getExpireDate(): string
+    {
+        if (isset($order) && isset($order->expire_date) && !is_null($order->expire_date)) {
+            return $order->expire_date;
+        }
+
+        return 'Fara data de expirare';
+    }
+
+    public function getImgPath(): string
+    {
+        if (isset($order) && isset($order->img_path) && !is_null($order->img_path)) {
+            return  asset('storage/' . $order->img_path);
+        }
+
+        return asset('storage/uploads/orders/default_order.png');
+    }
+
+    public function getMinQuantity(): string
+    {
+        if (isset($order) && isset($order->min_quantity) && !is_null($order->min_quantity)) {
+            return $order->min_quantity;
+        }
+
+        return 'Fara cantitate minima';
+    }
 }

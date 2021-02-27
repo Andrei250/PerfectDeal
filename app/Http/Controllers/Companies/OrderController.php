@@ -9,10 +9,13 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function index() {
-        return view('orders.orders');
+        $orders = Order::where(['status' => 'Available'])->paginate(10);
+
+        return view('orders.orders', ['orders' => $orders]);
     }
 
-    public function addNewOrder(Request $request) {
+    public function addNewOrder(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
