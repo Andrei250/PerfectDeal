@@ -19,10 +19,77 @@ class OrderController extends Controller
 
     public function addNewOrder(Request $request): RedirectResponse
     {
-        $this->validateRequest($request);
+        $this->validateRequest($request, 'title', 'description', 'quantity', 'min_quantity', 'expire_date', 'price');
 
         $order = new Order();
 
+        return $this->saveAndRedirect($request, $order, "Comanda adaugata cu succes!");
+    }
+
+    public function deleteOrder(Order $order): RedirectResponse
+    {
+        try {
+            $order->delete();
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'A aparut o eroare');
+        }
+
+        return redirect()->back()->with('success', 'Comanda stearsa cu succes!');
+    }
+
+    /**
+     * @param Order $order
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function modifyOrder(Order $order, Request $request) {
+        if (Auth::user()->id != $order->user_id) {
+            return redirect('home');
+        }
+
+        $this->validateRequest($request, 'title-order', 'description-order', 'quantity-order', 'min_quantity-order', 'expire_date-order', 'price-order');
+
+        return $this->saveAndRedirect($request, $order, "Comanda modificata cu succes!");
+
+    }
+
+    public function showOrder(Order $order) {
+        if (Auth::user()->id != $order->user_id) {
+            return redirect('home');
+        }
+
+        return view('orders.modify_order', ['order' => $order]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $title
+     * @param $description
+     * @param $quantity
+     * @param $min_quantity
+     * @param $expire_date
+     * @param $price
+     * @return array
+     */
+    private function validateRequest(Request $request,
+                                     $title,
+                                     $description,
+                                     $quantity,
+                                     $min_quantity,
+                                     $expire_date,
+                                     $price): array
+    {
+        return $request->validate([
+            $title => 'required',
+            $description => 'required',
+            $quantity => 'required',
+            $min_quantity => 'required|lte:quantity',
+            $expire_date => 'required|date|after:yesterday',
+            $price => 'required'
+        ]);
+    }
+
+    private function  saveAndRedirect(Request $request, Order $order, $success) {
         $order->builder($request->get('title'),
             $request->get('description'),
             $request->get('quantity'),
@@ -41,45 +108,8 @@ class OrderController extends Controller
             return redirect()->back()->with('error', 'A aparut o eroare');
         }
 
-        return redirect()->back()->with('success', 'Comanda adaugata cu succes!');
+        return redirect()->back()->with('success', $success);
     }
 
-    public function deleteOrder(Order $order): RedirectResponse
-    {
-        try {
-            $order->delete();
-        } catch (Exception $e) {
-            return redirect()->back()->with('error', 'A aparut o eroare');
-        }
-
-        return redirect()->back()->with('success', 'Comanda stearsa cu succes!');
-    }
-
-    public function modifyOrder(Order $order) {
-        if (Auth::user()->id != $order->user_id) {
-            return redirect('home');
-        }
-
-    }
-
-    public function showOrder(Order $order) {
-        if (Auth::user()->id != $order->user_id) {
-            return redirect('home');
-        }
-
-        return view('orders.modify_order', ['order' => $order]);
-    }
-
-    private function validateRequest(Request $request): array
-    {
-        return $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'quantity' => 'required',
-            'min_quantity' => 'required|lte:quantity',
-            'expire_date' => 'required|date|after:yesterday',
-            'price' => 'required'
-        ]);
-    }
 
 }

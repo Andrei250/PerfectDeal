@@ -121,7 +121,12 @@
                     <form id="add-new-product-form" action="{{route('company.addNewOrder')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                       @include('orders.order_form')
+                       @include('orders.order_form', ['title' => 'title',
+                                                        'description' => 'description',
+                                                        'quantity' => 'quantity',
+                                                        'min_quantity' => 'min_quantity',
+                                                        'price' => 'price',
+                                                        'expire_date' => 'expire_date'])
 
                     </form>
                 </div>
