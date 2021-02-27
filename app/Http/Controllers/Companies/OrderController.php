@@ -47,6 +47,17 @@ class OrderController extends Controller
             return redirect()->back()->with('error', 'A aparut o eroare');
         }
 
-        return redirect()->back()->with('success', 'Utilizator sters cu succes!');
+        return redirect()->back()->with('success', 'Comanda adaugata cu succes!');
+    }
+
+    public function deleteOrder(Order $order): RedirectResponse
+    {
+        try {
+            $order->delete();
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'A aparut o eroare');
+        }
+
+        return redirect()->back()->with('success', 'Comanda stearsa cu succes!');
     }
 }

@@ -12,32 +12,17 @@
             <p class="text-md-left my-2"> Expira la: {{!is_null($order) ? $order->getExpireDate() : "Nu are data de expirare"}}</p>
             <p class="text-md-left my-2"> Pret: {{!is_null($order) ? $order->getPrice() : "Fara pret"}}</p>
 
-            @if(isset($value) && $value == 1)
-                <div class="w-100 mt-auto">
-                    <div class="float-right">
-                        <button class="btn btn-primary">
-                            Cumpara
-                        </button>
+            <div class="w-100 mt-auto">
+                <div class="float-right">
+                    <button class="btn btn-primary">
+                        Cumpara
+                    </button>
 
-                        <button class="btn btn-info">
-                            Negociaza
-                        </button>
-                    </div>
+                    <button class="btn btn-info">
+                        Negociaza
+                    </button>
                 </div>
-            @elseif(isset($value) && $value == 0)
-                <div class="w-100 mt-auto">
-                    <div class="float-right">
-                        <button class="btn btn-info float-left">
-                            Modifica
-                        </button>
-
-                        <form action="" method="POST" class="float-left">
-                            @csrf
-                            <input class="btn btn-danger float-left ml-2" type="submit" value="Sterge"/>
-                        </form>
-                    </div>
-                </div>
-            @endif
+            </div>
         </div>
     </div>
 </div>

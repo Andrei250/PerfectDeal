@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function renderMyOrders() {
-        $orders = Auth::user()->orders()->paginate(10);
+        $orders = Auth::user()->orders()->orderBy('created_at', 'DESC')->paginate(10);
 
         return view('user.my_orders', ['orders' => $orders]);
     }
