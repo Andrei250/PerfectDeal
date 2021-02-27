@@ -19,7 +19,8 @@ class Order extends Model
         'status',
         'min_quantity',
         'user_id',
-        'img_path'
+        'img_path',
+        'price'
     ];
 
     protected $table = 'orders';
@@ -94,5 +95,14 @@ class Order extends Model
         }
 
         return 'Fara cantitate minima';
+    }
+
+    public function getPrice(): string
+    {
+        if (isset($this->price) && !is_null($this->price)) {
+            return $this->price;
+        }
+
+        return 'Fara pret';
     }
 }

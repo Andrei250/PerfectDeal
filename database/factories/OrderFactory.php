@@ -32,7 +32,8 @@ class OrderFactory extends Factory
             'user_id' => User::all()->random()->id,
             'created_at' => now(),
             'updated_at' => now(),
-            'img_path' => 'uploads/orders/default_order.png'
+            'img_path' => 'uploads/orders/default_order.png',
+            'price' => $this->faker->numberBetween(10, 10000),
         ];
     }
 }
