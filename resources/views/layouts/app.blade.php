@@ -127,6 +127,7 @@
                                                         'min_quantity' => 'min_quantity',
                                                         'price' => 'price',
                                                         'expire_date' => 'expire_date',
+                                                        'icon' => 'icon',
                                                         'first_title' => '',
                                                         'first_description' => '',
                                                         'first_quantity' => '',

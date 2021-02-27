@@ -23,7 +23,15 @@ class OrderController extends Controller
 
         $order = new Order();
 
-        return $this->saveAndRedirect($request, $order, "Comanda adaugata cu succes!");
+        $this->saveAndRedirect($request, $order, 'title', 'description', 'quantity', 'min_quantity', 'expire_date', 'price', 'icon');
+
+        try {
+            $order->save();
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'A aparut o eroare');
+        }
+
+        return redirect()->back()->with('success', 'Comanda adaugata cu succes!');
     }
 
     public function deleteOrder(Order $order): RedirectResponse
@@ -49,7 +57,15 @@ class OrderController extends Controller
 
         $this->validateRequest($request, 'title-order', 'description-order', 'quantity-order', 'min_quantity-order', 'expire_date-order', 'price-order');
 
-        return $this->saveAndRedirect($request, $order, "Comanda modificata cu succes!");
+        $this->saveAndRedirect($request, $order, 'title-order', 'description-order', 'quantity-order', 'min_quantity-order', 'expire_date-order', 'price-order', 'icon-order');
+
+        try {
+            $order->update();
+        } catch (Exception $e) {
+            return redirect('home')->with('error', 'A aparut o eroare');
+        }
+
+        return redirect('home')->with('success', "Comanda modificata cu succes");
 
     }
 
@@ -83,32 +99,32 @@ class OrderController extends Controller
             $title => 'required',
             $description => 'required',
             $quantity => 'required',
-            $min_quantity => 'required|lte:quantity',
+            $min_quantity => 'required|lte:' . $quantity,
             $expire_date => 'required|date|after:yesterday',
             $price => 'required'
         ]);
     }
 
-    private function  saveAndRedirect(Request $request, Order $order, $success) {
-        $order->builder($request->get('title'),
-            $request->get('description'),
-            $request->get('quantity'),
-            $request->get('min_quantity'),
-            $request->get('expire_date'),
-            $request->get('price'));
+    private function  saveAndRedirect(Request $request, Order $order,
+                                      $title,
+                                      $description,
+                                      $quantity,
+                                      $min_quantity,
+                                      $expire_date,
+                                      $price,
+                                      $icon)
+    {
+        $order->builder($request->get($title),
+            $request->get($description),
+            $request->get($quantity),
+            $request->get($min_quantity),
+            $request->get($expire_date),
+            $request->get($price));
 
-        if ($request->hasFile('icon')) {
-            $path = $request['icon']->store('public/uploads/orders');
+        if ($request->hasFile($icon)) {
+            $path = $request[$icon]->store('public/uploads/orders');
             $order->img_path = str_replace("public/", "", $path);
         }
-
-        try {
-            $order->save();
-        } catch (Exception $e) {
-            return redirect()->back()->with('error', 'A aparut o eroare');
-        }
-
-        return redirect()->back()->with('success', $success);
     }
 
 

@@ -82,6 +82,6 @@
 </div>
 
 <div class="custom-file">
-    <input type="file" class="custom-file-input" id="icon" name="icon">
-    <label class="custom-file-label" for="icon">Poza</label>
+    <input type="file" class="custom-file-input" id="{{$icon}}" name="{{$icon}}">
+    <label class="custom-file-label" for="{{$icon}}">Poza</label>
 </div>
