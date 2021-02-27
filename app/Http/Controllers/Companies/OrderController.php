@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Companies;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function index() {
-        $orders = Order::where(['status' => 'Available'])->paginate(10);
+        $orders = Order::where(['status' => 'Available'])->orderBy('created_at', 'DESC')->paginate(10);
 
-        return view('orders.orders', ['orders' => $orders]);
+        return view('orders.newsfeed', ['orders' => $orders]);
     }
 
-    public function addNewOrder(Request $request): \Illuminate\Http\RedirectResponse
+    public function addNewOrder(Request $request): RedirectResponse
     {
         $request->validate([
             'title' => 'required',
@@ -39,7 +41,7 @@ class OrderController extends Controller
 
         try {
             $order->save();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'A aparut o eroare');
         }
 

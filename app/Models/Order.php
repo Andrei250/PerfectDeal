@@ -44,8 +44,8 @@ class Order extends Model
 
     public function getTitle(): string
     {
-        if (isset($order) && isset($order->title) && !is_null($order->title)) {
-            return $order->title;
+        if (isset($this->title) && !is_null($this->title)) {
+            return $this->title;
         }
 
         return 'Fara titlu';
@@ -53,8 +53,8 @@ class Order extends Model
 
     public function getDescription(): string
     {
-        if (isset($order) && isset($order->description) && !is_null($order->description)) {
-            return $order->description;
+        if (isset($this->description) && !is_null($this->description)) {
+            return $this->description;
         }
 
         return 'Fara descriere';
@@ -62,8 +62,8 @@ class Order extends Model
 
     public function getQuantity(): string
     {
-        if (isset($order) && isset($order->quantity) && !is_null($order->quantity)) {
-            return $order->quantity;
+        if (isset($this->quantity) && !is_null($this->quantity)) {
+            return $this->quantity;
         }
 
         return 'Fara cantitate';
@@ -71,8 +71,8 @@ class Order extends Model
 
     public function getExpireDate(): string
     {
-        if (isset($order) && isset($order->expire_date) && !is_null($order->expire_date)) {
-            return $order->expire_date;
+        if (isset($this->expire_date) && !is_null($this->expire_date)) {
+            return $this->expire_date;
         }
 
         return 'Fara data de expirare';
@@ -80,8 +80,8 @@ class Order extends Model
 
     public function getImgPath(): string
     {
-        if (isset($order) && isset($order->img_path) && !is_null($order->img_path)) {
-            return  asset('storage/' . $order->img_path);
+        if (isset($this->img_path) && !is_null($this->img_path)) {
+            return  asset('storage/' . $this->img_path);
         }
 
         return asset('storage/uploads/orders/default_order.png');
@@ -89,8 +89,8 @@ class Order extends Model
 
     public function getMinQuantity(): string
     {
-        if (isset($order) && isset($order->min_quantity) && !is_null($order->min_quantity)) {
-            return $order->min_quantity;
+        if (isset($this->min_quantity) && !is_null($this->min_quantity)) {
+            return $this->min_quantity;
         }
 
         return 'Fara cantitate minima';
