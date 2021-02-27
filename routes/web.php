@@ -24,5 +24,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/order.php';
+require __DIR__.'/user.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
