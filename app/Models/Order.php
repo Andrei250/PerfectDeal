@@ -30,7 +30,8 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {
+    public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price)
+    {
         $this->title = $title;
         $this->description = $description;
         $this->quantity = $quantity;
@@ -74,7 +75,7 @@ class Order extends Model
     public function getExpireDate(): string
     {
         if (isset($this->expire_date) && !is_null($this->expire_date)) {
-            return $this->expire_date;
+            return date("d M Y", strtotime($this->expire_date));
         }
 
         return 'Fara data de expirare';
@@ -83,7 +84,7 @@ class Order extends Model
     public function getImgPath(): string
     {
         if (isset($this->img_path) && !is_null($this->img_path)) {
-            return  asset('storage/' . $this->img_path);
+            return asset('storage/' . $this->img_path);
         }
 
         return asset('storage/uploads/orders/default_order.png');
