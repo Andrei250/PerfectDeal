@@ -23,7 +23,7 @@
                 <div class="carousel-item active">
                     <div class="wrapper fadeInDown">
                         <div id="formContent">
-                            <div class="card-header">{{ __('Bine ați venit!') }}</div>
+                            <div class="card-header mb-3">{{ __('Bine ați venit!') }}</div>
 
                             <!-- Name -->
                             <div class="form-group row">
@@ -36,6 +36,7 @@
                                     ></x-input>
 
                                     @error('name')
+                                    <br>
                                     <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
@@ -51,6 +52,7 @@
                                              onblur="this.placeholder = 'Email-ul companiei'"></x-input>
 
                                     @error('email')
+                                    <br>
                                     <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
@@ -66,6 +68,7 @@
                                              onblur="this.placeholder = 'Telefon'"></x-input>
 
                                     @error('phone')
+                                    <br>
                                     <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
@@ -81,6 +84,7 @@
                                              onblur="this.placeholder = 'Adresa companiei'"></x-input>
 
                                     @error('address')
+                                    <br>
                                     <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
@@ -106,7 +110,7 @@
                 <div class="carousel-item">
                     <div class="wrapper fadeInDown">
                         <div id="formContent">
-                            <div class="card-header">{{ __('Bine ați venit!') }}</div>
+                            <div class="card-header mb-3">{{ __('Bine ați venit!') }}</div>
 
                             <!-- Caen Code -->
                             <div class="form-group row">
@@ -116,8 +120,8 @@
                                              autocomplete="caen_code" placeholder="Codul Caen"
                                              onfocus="this.placeholder = ''"
                                              onblur="this.placeholder = 'Codul Caen'"></x-input>
-
                                     @error('caen_code')
+                                    <br>
                                     <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
@@ -133,6 +137,7 @@
                                              onblur="this.placeholder = 'CIF/CUI'"></x-input>
 
                                     @error('cif')
+                                    <br>
                                     <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
@@ -148,9 +153,8 @@
                                              onblur="this.placeholder = 'Numarul de Ordine în R.C.'"></x-input>
 
                                     @error('com_reg')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <br>
+                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
                             </div>
@@ -189,7 +193,7 @@
                 <div class="carousel-item">
                     <div class="wrapper fadeInDown">
                         <div id="formContent">
-                            <div class="card-header">{{ __('Bine ați venit!') }}</div>
+                            <div class="card-header mb-3">{{ __('Bine ați venit!') }}</div>
 
                             <!-- Password -->
                             <div class="form-group row">
@@ -203,9 +207,8 @@
                                              onblur="this.placeholder = 'Parola'"></x-input>
 
                                     @error('password')
-                                    <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                    <br>
+                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
                             </div>
@@ -221,9 +224,8 @@
                                              onblur="this.placeholder = 'Confirmați Parola'"></x-input>
 
                                     @error('password_confirmation')
-                                    <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                    <br>
+                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>
                             </div>
