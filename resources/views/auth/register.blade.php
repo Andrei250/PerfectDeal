@@ -10,7 +10,7 @@
 @section('content')
 
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+    <div id="register-carousel" class="carousel slide" data-interval="false">
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="carousel-inner">
@@ -18,6 +18,12 @@
                     <div class="wrapper fadeInDown">
                         <div id="formContent">
                             <div class="card-header mb-3">{{ __('Bine ați venit!') }}</div>
+
+                            <div class="col-md-11 mx-auto" id="error-slide-1" style="display:none">
+                                <p class="alert alert-danger">
+                                    Toate campurile sunt obligatorii
+                                </p>
+                            </div>
 
                             <!-- Name -->
                             <div class="form-group row">
@@ -92,9 +98,10 @@
                             </div>
 
                             <!-- Next Slide Button -->
-                            <div class="form-group row col-md-12 mx-auto d-flex flex-row-reverse ">
-                                <a class="btn btn-primary col-md-3 fadeIn fourth"
-                                   href="#carouselExampleIndicators"
+                            <div class="form-group row col-md-12 mx-auto d-flex flex-row-reverse" >
+                                <a id="first-button-carousel"
+                                   class="btn btn-primary col-md-3 fadeIn fourth"
+                                   href="#register-carousel"
                                    role="button"
                                    data-slide="next">Înainte</a>
                             </div>
@@ -105,6 +112,12 @@
                     <div class="wrapper fadeInDown">
                         <div id="formContent">
                             <div class="card-header mb-3">{{ __('Bine ați venit!') }}</div>
+
+                            <div class="col-md-11 mx-auto" id="error-slide-2" style="display:none">
+                                <p class="alert alert-danger">
+                                    Toate campurile sunt obligatorii
+                                </p>
+                            </div>
 
                             <!-- Caen Code -->
                             <div class="form-group row">
@@ -168,15 +181,16 @@
 
                                 <!-- Back Slide Button -->
                                 <div class="d-flex flex-row">
-                                    <a class="btn btn-primary col-md-12 fadeIn third" href="#carouselExampleIndicators"
+                                    <a class="btn btn-primary col-md-12 fadeIn third" href="#register-carousel"
                                        role="button"
                                        data-slide="prev">Înapoi</a>
                                 </div>
 
                                 <!-- Next Slide Button -->
                                 <div class="d-flex flex-row-reverse">
-                                    <a class="btn btn-primary col-md-12 mx-auto fadeIn third"
-                                       href="#carouselExampleIndicators"
+                                    <a id="second-button-carousel"
+                                       class="btn btn-primary col-md-12 mx-auto fadeIn third"
+                                       href="#register-carousel"
                                        role="button"
                                        data-slide="next">Înainte</a>
                                 </div>
@@ -238,7 +252,7 @@
 
                                 <!-- Back Slide Button -->
                                 <div class="d-flex flex-row">
-                                    <a class="btn btn-primary col-md-12 fadeIn third" href="#carouselExampleIndicators"
+                                    <a class="btn btn-primary col-md-12 fadeIn third" href="#register-carousel"
                                        role="button"
                                        data-slide="prev">Înapoi</a>
                                 </div>
@@ -254,4 +268,38 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+
+        function switchOffErrors() {
+            $('#error-slide-1').css('display', 'none');
+            $('#error-slide-2').css('display', 'none');
+        }
+
+        $('#first-button-carousel').click(function(e) {
+            switchOffErrors();
+
+            if ($('#name').val() === '' || $('#email').val()=== '' || $('#phone').val() === '' || $('#address').val() === '') {
+                $('#error-slide-1').css('display', 'block');
+                e.preventDefault();
+                e.stopPropagation();
+            } else {
+                switchOffErrors();
+            }
+        });
+
+        $('#second-button-carousel').click(function(e) {
+            switchOffErrors();
+
+            if ($('#caen_code').val() === '' || $('#cif').val() === '' || $('#com_reg').val() === '') {
+                $('#error-slide-2').css('display', 'block');
+                e.preventDefault();
+                e.stopPropagation();
+            } else {
+                switchOffErrors();
+            }
+        });
+    </script>
 @endsection
