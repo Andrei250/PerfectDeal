@@ -37,7 +37,11 @@
 
                                     @error('name')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -53,7 +57,11 @@
 
                                     @error('email')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -69,7 +77,11 @@
 
                                     @error('phone')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -85,7 +97,11 @@
 
                                     @error('address')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -129,7 +145,11 @@
                                              onblur="this.placeholder = 'Codul Caen'"></x-input>
                                     @error('caen_code')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -145,7 +165,11 @@
 
                                     @error('cif')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -161,7 +185,11 @@
 
                                     @error('com_reg')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -216,7 +244,11 @@
 
                                     @error('password')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -233,7 +265,11 @@
 
                                     @error('password_confirmation')
                                     <br>
-                                    <span class="text-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                        <span class="text-danger" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
