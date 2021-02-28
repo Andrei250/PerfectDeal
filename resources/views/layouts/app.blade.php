@@ -91,11 +91,13 @@
                     </ul>
 
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <button type="button" class="btn bg-white" data-toggle="modal" data-target="#add-new-product-modal">
-                                Adauga anunt nou
-                            </button>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <button type="button" class="btn bg-white" data-toggle="modal" data-target="#add-new-product-modal">
+                                    Adauga anunt nou
+                                </button>
+                            </li>
+                        @endauth
                     </ul>
 
                 </div>
