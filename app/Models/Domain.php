@@ -23,4 +23,22 @@ class Domain extends Model
         return $this->hasMany(Category::class);
     }
 
+    public function getIconPath(): string
+    {
+        if (isset($this->icon_path) && !is_null($this->icon_path)) {
+            return asset('storage/' . $this->icon_path);
+        }
+
+        return asset('storage/uploads/orders/default_order.png');
+    }
+
+    public function getName(): string
+    {
+        if (isset($this->name) && !is_null($this->name)) {
+            return $this->name;
+        }
+
+        return "Fara nume";
+    }
+
 }
