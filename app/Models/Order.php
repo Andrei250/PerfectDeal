@@ -19,7 +19,8 @@ class Order extends Model
         'status',
         'min_quantity',
         'user_id',
-        'img_path'
+        'img_path',
+        'price'
     ];
 
     protected $table = 'orders';
@@ -29,16 +30,80 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function builder($title, $description, $quantity, $min_quantity, $expire_date) {
+    public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {
         $this->title = $title;
         $this->description = $description;
         $this->quantity = $quantity;
         $this->min_quantity = $min_quantity;
         $this->expire_date = $expire_date;
         $this->status = 'Available';
-        $this->img_path = 'storage/uploads/orderd/default_order.png';
+        $this->img_path = 'storage/uploads/orders/default_order.png';
         $this->user_id = Auth::user()->id;
         $this->created_at = now();
         $this->updated_at = now();
+        $this->price = $price;
+    }
+
+    public function getTitle(): string
+    {
+        if (isset($this->title) && !is_null($this->title)) {
+            return $this->title;
+        }
+
+        return 'Fara titlu';
+    }
+
+    public function getDescription(): string
+    {
+        if (isset($this->description) && !is_null($this->description)) {
+            return $this->description;
+        }
+
+        return 'Fara descriere';
+    }
+
+    public function getQuantity(): string
+    {
+        if (isset($this->quantity) && !is_null($this->quantity)) {
+            return $this->quantity;
+        }
+
+        return 'Fara cantitate';
+    }
+
+    public function getExpireDate(): string
+    {
+        if (isset($this->expire_date) && !is_null($this->expire_date)) {
+            return $this->expire_date;
+        }
+
+        return 'Fara data de expirare';
+    }
+
+    public function getImgPath(): string
+    {
+        if (isset($this->img_path) && !is_null($this->img_path)) {
+            return  asset('storage/' . $this->img_path);
+        }
+
+        return asset('storage/uploads/orders/default_order.png');
+    }
+
+    public function getMinQuantity(): string
+    {
+        if (isset($this->min_quantity) && !is_null($this->min_quantity)) {
+            return $this->min_quantity;
+        }
+
+        return 'Fara cantitate minima';
+    }
+
+    public function getPrice(): string
+    {
+        if (isset($this->price) && !is_null($this->price)) {
+            return $this->price;
+        }
+
+        return 'Fara pret';
     }
 }
