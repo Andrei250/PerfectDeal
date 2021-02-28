@@ -19,7 +19,7 @@
                     <div class="col-md-12 mx-auto">
                         <input id="login" type="text" class="fadeIn second @error('email') is-invalid @enderror"
                                name="email"
-                               value="{{ old('email') }}" required autocomplete="email" placeholder="Login"
+                               value="{{ old('email') }}" required autocomplete="email" placeholder="Email"
                                onfocus="this.placeholder = ''"
                                onblur="this.placeholder = 'Email'">
 
@@ -36,7 +36,7 @@
                     <div class="col-md-12 mx-auto">
                         <input id="password" type="password"
                                class="fadeIn third @error('password') is-invalid @enderror"
-                               name="password" required autocomplete="current-password" placeholder="Password"
+                               name="password" required autocomplete="current-password" placeholder="Parola"
                                onfocus="this.placeholder = ''"
                                onblur="this.placeholder='Parola'">
 
@@ -71,8 +71,8 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary fadeIn fourth col-md-4">
-                            {{ __('Intrați în cont') }}
+                        <button type="submit" class="btn btn-primary fadeIn third col-md-4">
+                            {{ __('Register') }}
                         </button>
                     </div>
                 </div>

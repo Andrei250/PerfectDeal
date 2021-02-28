@@ -151,13 +151,15 @@
 </body>
 
 @yield('scripts')
-
 <script>
+
+
     function submitOrderForm() {
         $('#add-new-product-form').submit();
     }
 
     $(document).ready(function () {
+        @yield('ready-scritps')
         $('#add-new-product-modal').on('hidden.bs.modal', function (e) {
             //reset form on closing modal
             $('#add-new-product-form')[0].reset();

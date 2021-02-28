@@ -26,6 +26,20 @@ h2 {
 
 /* STRUCTURE */
 
+.carousel-indicators li {
+    background-color: gray !important;
+    bottom: -200px;
+}
+
+.carousel-indicators .active {
+    background-color: #2882FF !important;
+}
+
+.wrapper.fadeInDown {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
 .card-header {
     background-color: #ffffff !important;
     font-size: large;
@@ -114,7 +128,7 @@ button:active {
     transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=tel] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;

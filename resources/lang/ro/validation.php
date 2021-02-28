@@ -150,8 +150,9 @@ return [
 
         'phone' => [
             'required' => 'Campul Numarului de Telefon este oblgiatoriu!',
-            'string' => 'Numarul de telefon trebuie sa fie un sir de caractere.',
-            'unique' => 'Acest Numar de Telefon  exista deja in baza de date.',
+            'string' => 'Numarul de telefon trebuie să contină doar cifre.',
+            'unique' => 'Acest Numar de Telefon  există deja in baza de date.',
+            'min' => 'Numarul de telefon trebuie sa aibă 10 caractere.',
         ],
 
         'address' => [
