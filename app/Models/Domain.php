@@ -41,4 +41,13 @@ class Domain extends Model
         return "Fara nume";
     }
 
+    public function getSlug(): string
+    {
+        if (isset($this->slug) && !is_null($this->slug)) {
+            return $this->slug;
+        }
+
+        return "No Slug";
+    }
+
 }
