@@ -57,6 +57,7 @@
         function getDomain(slug) {
              let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
              url = url.replace(':tobereplaced', slug);
+             domain = slug;
 
             makeRequest(url, _token, categoriesSelect, "Categorie");
         }

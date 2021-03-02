@@ -2,6 +2,7 @@
 const categoriesSelect = $('#categories-select');
 const subcategoriesSelect = $('#subcategories-select');
 const _token = $('meta[name="csrf-token"]').attr('content');
+let domain;
 
 function makeRequest(url, _token, field, text) {
     $.ajax({
