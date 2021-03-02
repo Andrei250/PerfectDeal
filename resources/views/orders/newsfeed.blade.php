@@ -51,32 +51,14 @@
 
 
 @section('scripts')
+    <script src="{{ asset('js/newsfeed.js') }}"></script>
 
     <script>
-        const categoriesSelect = $('#categories-select');
-        const subcategoriesSelect = $('#subcategories-select');
-        let _token = $('meta[name="csrf-token"]').attr('content');
-
         function getDomain(slug) {
              let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
              url = url.replace(':tobereplaced', slug);
 
-             $.ajax({
-                 url: url,
-                 type: 'POST',
-                 data: {
-                     _token: _token,
-                 },
-                 success: function (response) {
-                     categoriesSelect.removeAttr('disabled');
-                     categoriesSelect.html('');
-                     categoriesSelect.append('<option selected name="disabled" disabled>Categorie</option>');
-
-                     response[0].forEach(element => {
-                         categoriesSelect.append('<option name="' + element['slug'] + '" >' + element['name'] + '</option>');
-                     });
-                 }
-             });
+            makeRequest(url, _token, categoriesSelect, "Categorie");
         }
 
         categoriesSelect.on('change', function (event) {
@@ -84,27 +66,14 @@
             let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
             url = url.replace(':tobereplaced', slug);
 
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    _token: _token,
-                },
-                success: function (response) {
-                    subcategoriesSelect.removeAttr('disabled');
-                    subcategoriesSelect.html('');
-                    subcategoriesSelect.append('<option selected name="disabled" disabled>Subcategorie</option>');
-
-                    response[0].forEach(element => {
-                        subcategoriesSelect.append('<option name="' + element['slug'] + '" >' + element['name'] + '</option>');
-                    });
-                }
-            });
+            makeRequest(url, _token, subcategoriesSelect, "Subcategorie");
         });
 
 
         $('#filters-button').click(function (event) {
-            console.log(categoriesSelect.value);
+            let categorySlug = categoriesSelect.find(":selected").attr('name');
+            let subcategorySlug = subcategoriesSelect.find(":selected").attr('name');
+
 
         });
 
