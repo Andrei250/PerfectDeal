@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,19 +33,19 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function domains(): HasMany
+    public function domains(): BelongsToMany
     {
-        return $this->hasMany(Domain::class);
+        return $this->belongsToMany(Domain::class, 'order_domain', 'order_id', 'domain_id');
     }
 
-    public function categories(): HasMany
+    public function categories(): BelongsToMany
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsToMany(Category::class, 'order_category', 'order_id', 'category_id');
     }
 
-    public function subcategories(): HasMany
+    public function subcategories(): BelongsToMany
     {
-        return $this->hasMany(SubCategory::class);
+        return $this->belongsToMany(SubCategory::class, 'order_subcategory', 'order_id', 'subcategory_id');
     }
 
     public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {

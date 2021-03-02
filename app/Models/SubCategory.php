@@ -26,6 +26,6 @@ class SubCategory extends Model
 
     public function orders(): BelongsToMany
     {
-        return $this->belongsToMany(Order::class, 'order_subcategory');
+        return $this->belongsToMany(Order::class, 'order_subcategory', 'subcategory_id', 'order_id');
     }
 }

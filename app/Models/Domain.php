@@ -26,7 +26,7 @@ class Domain extends Model
 
     public function orders(): BelongsToMany
     {
-        return $this->belongsToMany(Order::class, 'order_domain');
+        return $this->belongsToMany(Order::class, 'order_domain', 'domain_id', 'order_id');
     }
 
     public function getIconPath(): string
