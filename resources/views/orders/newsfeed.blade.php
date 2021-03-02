@@ -21,9 +21,6 @@
             <div class="col-md-5">
                 <select class="form-control" disabled id="categories-select">
                     <option selected disabled>Categorie</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                 </select>
             </div>
 
@@ -75,13 +72,19 @@
                  },
                  success: function (response) {
                      categoriesSelect.removeAttr('disabled');
+                     categoriesSelect.html('');
+                     categoriesSelect.append('<option selected name="disabled" disabled>Categorie</option>');
 
                      response[0].forEach(element => {
-                         console.log(element);
+                         categoriesSelect.append('<option name="' + element['slug'] + '" >' + element['name'] + '</option>');
                      });
                  }
              });
         }
+
+        categoriesSelect.on('change', function (event) {
+           console.log(categoriesSelect.find(":selected").attr('name'));
+        });
 
 
         $('#filters-button').click(function (event) {
