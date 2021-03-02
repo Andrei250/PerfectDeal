@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel');
-
-    Route::delete('/admin/panel/delete/{user:name}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+    Route::post('/category/{category:slug}/getSubcategories', [CategoryController::class, 'getSubcategories'])->name('category.getSubcategories');
 });

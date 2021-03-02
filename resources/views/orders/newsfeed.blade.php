@@ -27,9 +27,6 @@
             <div class="col-md-5">
                 <select class="form-control" id="subcategories-select" disabled>
                     <option selected disabled>Subcategorie</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                 </select>
             </div>
 
@@ -83,7 +80,26 @@
         }
 
         categoriesSelect.on('change', function (event) {
-           console.log(categoriesSelect.find(":selected").attr('name'));
+            let slug = categoriesSelect.find(":selected").attr('name');
+            let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
+            url = url.replace(':tobereplaced', slug);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    _token: _token,
+                },
+                success: function (response) {
+                    subcategoriesSelect.removeAttr('disabled');
+                    subcategoriesSelect.html('');
+                    subcategoriesSelect.append('<option selected name="disabled" disabled>Subcategorie</option>');
+
+                    response[0].forEach(element => {
+                        subcategoriesSelect.append('<option name="' + element['slug'] + '" >' + element['name'] + '</option>');
+                    });
+                }
+            });
         });
 
 

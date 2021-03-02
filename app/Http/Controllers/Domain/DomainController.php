@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class DomainController extends Controller
 {
-    public function getCategories(Request $request, Domain $domain) {
+    public function getCategories(Request $request, Domain $domain): array
+    {
         return [$domain->categories];
     }
 }
