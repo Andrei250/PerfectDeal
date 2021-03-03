@@ -1,8 +1,4 @@
 /* JS code for newsfeed*/
-const categoriesSelect = $('#categories-select');
-const subcategoriesSelect = $('#subcategories-select');
-const _token = $('meta[name="csrf-token"]').attr('content');
-let domain;
 
 function makeRequest(url, _token, field, text) {
     $.ajax({
@@ -17,8 +13,14 @@ function makeRequest(url, _token, field, text) {
             field.append('<option selected name="disabled" disabled>' + text + '</option>');
 
             response[0].forEach(element => {
-                field.append('<option name="' + element['slug'] + '" >' + element['name'] + '</option>');
+                field.append('<option value="' + element['slug'] + '" >' + element['name'] + '</option>');
             });
         }
     });
+}
+
+function disableField(field, text) {
+    field.attr('disabled', true);
+    field.html('');
+    field.append('<option selected name="disabled" disabled>' + text + '</option>');
 }

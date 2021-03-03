@@ -81,6 +81,34 @@
     </div>
 </div>
 
+<div class="form-group row align-items-center">
+    <div class="col-md-12">
+        <select class="form-control" id="{{$domain}}" name="{{$domain}}">
+            <option selected disabled>Domenii</option>
+            @foreach(\App\Models\App::getDomains() as $dom)
+                <option value="{{$dom->getSlug()}}" >{{$dom->getName()}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="form-group row align-items-center">
+    <div class="col-md-12">
+        <select class="form-control" disabled id="{{$category}}" name="{{$category}}">
+            <option selected disabled>Categorii</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group row align-items-center">
+    <div class="col-md-12">
+        <select class="form-control" disabled id="{{$subcategory}}" name="{{$subcategory}}">
+            <option selected disabled>Subcategorie</option>
+        </select>
+    </div>
+</div>
+
+
 @if (isset($img_path))
     <div class="col col-md-4">
         Imagine curenta:<br>
@@ -93,3 +121,31 @@
     <input type="file" class="custom-file-input" id="{{$icon}}" name="{{$icon}}">
     <label class="custom-file-label" for="{{$icon}}">Poza</label>
 </div>
+
+<script src="{{ asset('js/newsfeed.js') }}"></script>
+<script>
+    const domainsAddSelect = $('#{{$domain}}');
+    const categoriesAddSelect = $('#{{$category}}');
+    const subcategoriesAddSelect = $('#{{$subcategory}}');
+    const _tokenAdd = $('meta[name="csrf-token"]').attr('content');
+
+    domainsAddSelect.on('change', function (event) {
+        let slug = domainsAddSelect.find(":selected").attr('value');
+        let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
+
+        url = url.replace(':tobereplaced', slug);
+        disableField(categoriesAddSelect, "Categorie");
+        disableField(subcategoriesAddSelect, "Subcategorie");
+
+        makeRequest(url, _token, categoriesAddSelect, "Categorie");
+    });
+
+    categoriesAddSelect.on('change', function (event) {
+        let slug = categoriesAddSelect.find(":selected").attr('value');
+        let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
+        url = url.replace(':tobereplaced', slug);
+
+        makeRequest(url, _token, subcategoriesAddSelect, "Subcategorie");
+    });
+
+</script>

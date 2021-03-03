@@ -54,10 +54,17 @@
     <script src="{{ asset('js/newsfeed.js') }}"></script>
 
     <script>
+        const categoriesSelect = $('#categories-select');
+        const subcategoriesSelect = $('#subcategories-select');
+        const _token = $('meta[name="csrf-token"]').attr('content');
+        let domain;
+
         function getDomain(slug) {
-             let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
-             url = url.replace(':tobereplaced', slug);
-             domain = slug;
+            let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
+            url = url.replace(':tobereplaced', slug);
+            domain = slug;
+            disableField(categoriesSelect, "Categorie");
+            disableField(subcategoriesSelect, "Subcategorie");
 
             makeRequest(url, _token, categoriesSelect, "Categorie");
         }

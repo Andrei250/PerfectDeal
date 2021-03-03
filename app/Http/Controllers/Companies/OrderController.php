@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Companies;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Domain;
 use App\Models\Order;
+use App\Models\SubCategory;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,10 +27,34 @@ class OrderController extends Controller
 
         $order = new Order();
 
-        $this->saveAndRedirect($request, $order, 'title', 'description', 'quantity', 'min_quantity', 'expire_date', 'price', 'icon');
+        $this->saveOrder($request, $order, 'title', 'description', 'quantity', 'min_quantity', 'expire_date', 'price', 'icon');
 
         try {
             $order->save();
+
+            if (isset($request['domain_add']) && !is_null($request['domain_add'])) {
+                $domain = Domain::where(['slug' => $request['domain_add']])->first();
+
+                if ($domain != null) {
+                    $order->domains()->attach($domain->id);
+
+                    if (isset($request['category_add']) && !is_null($request['category_add'])) {
+                        $category = Category::where(['slug' => $request['category_add']])->first();
+
+                        if ($category != null) {
+                            $order->categories()->attach($category->id);
+
+                            if (isset($request['subcategory_add']) && !is_null($request['subcategory_add'])) {
+                                $subcategory = Subcategory::where(['slug' => $request['subcategory_add']])->first();
+
+                                if ($subcategory != null) {
+                                    $order->subcategories()->attach($subcategory->id);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'A aparut o eroare');
         }
@@ -59,7 +85,7 @@ class OrderController extends Controller
 
         $this->validateRequest($request, 'title-order', 'description-order', 'quantity-order', 'min_quantity-order', 'expire_date-order', 'price-order');
 
-        $this->saveAndRedirect($request, $order, 'title-order', 'description-order', 'quantity-order', 'min_quantity-order', 'expire_date-order', 'price-order', 'icon-order');
+        $this->saveOrder($request, $order, 'title-order', 'description-order', 'quantity-order', 'min_quantity-order', 'expire_date-order', 'price-order', 'icon-order');
 
         try {
             $order->update();
@@ -107,7 +133,7 @@ class OrderController extends Controller
         ]);
     }
 
-    private function  saveAndRedirect(Request $request, Order $order,
+    private function saveOrder(Request $request, Order $order,
                                       $title,
                                       $description,
                                       $quantity,
