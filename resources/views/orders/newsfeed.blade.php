@@ -48,7 +48,9 @@
         const categoriesSelect = $('#categories-select');
         const subcategoriesSelect = $('#subcategories-select');
         const _token = $('meta[name="csrf-token"]').attr('content');
-        let domain;
+        let domain = "none";
+        let categorySlug = "none";
+        let subcategorySlug = "none";
 
         function getDomain(slug) {
             let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
@@ -70,10 +72,10 @@
 
 
         $('#filters-button').click(function (event) {
-            let categorySlug = categoriesSelect.find(":selected").attr('name');
-            let subcategorySlug = subcategoriesSelect.find(":selected").attr('name');
+            categorySlug = categoriesSelect.find(":selected").attr('name');
+            subcategorySlug = subcategoriesSelect.find(":selected").attr('name');
 
-
+            applyFilters('{{route('newsfeed.applyFilters')}}', _token, '', domain, categorySlug, subcategorySlug);
         });
 
     </script>
