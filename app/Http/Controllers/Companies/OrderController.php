@@ -89,6 +89,37 @@ class OrderController extends Controller
 
         try {
             $order->update();
+
+            if (isset($request['domain_modify']) && !is_null($request['domain_modify'])) {
+                $domain = Domain::where(['slug' => $request['domain_modify']])->first();
+
+                if ($domain != null) {
+                    if ($order->domains() != null) {
+                        $connection = $order->domains()->first();
+                        $order->domains()->detach($connection->id);
+                        $order->domains()->attach($domain->id);
+                    }
+
+                    $order->categories()->delete();
+                    $order->subcategories()->delete();
+
+                    if (isset($request['category_modify']) && !is_null($request['category_modify'])) {
+                        $category = Category::where(['slug' => $request['category_modify']])->first();
+
+                        if ($category != null) {
+                            $order->categories()->attach($category->id);
+
+                            if (isset($request['subcategory_modify']) && !is_null($request['subcategory_modify'])) {
+                                $subcategory = Subcategory::where(['slug' => $request['subcategory_modify']])->first();
+
+                                if ($subcategory != null) {
+                                    $order->subcategories()->attach($subcategory->id);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         } catch (Exception $e) {
             return redirect('home')->with('error', 'A aparut o eroare');
         }

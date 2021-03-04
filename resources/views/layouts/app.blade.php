@@ -138,7 +138,8 @@
                                                         'first_quantity' => '',
                                                         'first_min_quantity' => '',
                                                         'first_price' => '',
-                                                        'first_expire_date' => ''])
+                                                        'first_expire_date' => '',
+                                                        'for' => 'Add'])
 
                     </form>
                 </div>

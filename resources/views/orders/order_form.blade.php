@@ -124,28 +124,28 @@
 
 <script src="{{ asset('js/newsfeed.js') }}"></script>
 <script>
-    const domainsAddSelect = $('#{{$domain}}');
-    const categoriesAddSelect = $('#{{$category}}');
-    const subcategoriesAddSelect = $('#{{$subcategory}}');
-    const _tokenAdd = $('meta[name="csrf-token"]').attr('content');
+    const domains{{$for}}Select = $('#{{$domain}}');
+    const categories{{$for}}Select = $('#{{$category}}');
+    const subcategories{{$for}}Select = $('#{{$subcategory}}');
+    const _token{{$for}} = $('meta[name="csrf-token"]').attr('content');
 
-    domainsAddSelect.on('change', function (event) {
-        let slug = domainsAddSelect.find(":selected").attr('value');
+    domains{{$for}}Select.on('change', function (event) {
+        let slug = domains{{$for}}Select.find(":selected").attr('value');
         let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
 
         url = url.replace(':tobereplaced', slug);
-        disableField(categoriesAddSelect, "Categorie");
-        disableField(subcategoriesAddSelect, "Subcategorie");
+        disableField(categories{{$for}}Select, "Categorie");
+        disableField(subcategories{{$for}}Select, "Subcategorie");
 
-        makeRequest(url, _token, categoriesAddSelect, "Categorie");
+        makeRequest(url, _token{{$for}}, categories{{$for}}Select, "Categorie");
     });
 
-    categoriesAddSelect.on('change', function (event) {
-        let slug = categoriesAddSelect.find(":selected").attr('value');
+    categories{{$for}}Select.on('change', function (event) {
+        let slug = categories{{$for}}Select.find(":selected").attr('value');
         let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
         url = url.replace(':tobereplaced', slug);
 
-        makeRequest(url, _token, subcategoriesAddSelect, "Subcategorie");
+        makeRequest(url, _token{{$for}}, subcategories{{$for}}Select, "Subcategorie");
     });
 
 </script>
