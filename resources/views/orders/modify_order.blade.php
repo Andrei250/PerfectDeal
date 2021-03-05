@@ -33,7 +33,7 @@
                                                 'domain' => 'domain_modify',
                                                 'category' => 'category_modify',
                                                 'subcategory' => 'subcategory_modify',
-                                                'img_path' => asset($order->img_path),
+                                                'img_path' => $order->getImgPath(),
                                                 'first_title' => $order->title,
                                                 'first_description' => $order->description,
                                                 'first_quantity' => $order->quantity,
