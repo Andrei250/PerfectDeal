@@ -30,6 +30,10 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function orderRequests(){
+        return $this->hasMany(OrderRequest::class);
+    }
+
     public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price)
     {
         $this->title = $title;
@@ -107,4 +111,5 @@ class Order extends Model
 
         return 'Fara pret';
     }
+
 }
