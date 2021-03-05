@@ -32,9 +32,14 @@ class FilterController extends Controller
             $orders = $orders->get();
         }
 
-//        if (is_null()) {
-//
-//        }
-        return [$orders];
+        $ans[0] = '<p class="alert alert-warning">Nu este nicio comanda cu filtere adaugate</p>';
+
+        if (!is_null($orders)) {
+            $counter = 0;
+            foreach ($orders as $order) {
+                $ans[$counter++] = view('orders.order_component', ['order' => $order])->render();
+            }
+        }
+        return [$ans];
     }
 }

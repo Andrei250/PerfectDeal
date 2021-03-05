@@ -37,6 +37,10 @@
             </div>
         </div>
 
+        <div id="orders" class="row col-md-9 mx-auto">
+
+        </div>
+
     </div>
 @endsection
 
@@ -75,7 +79,7 @@
             categorySlug = categoriesSelect.find(":selected").attr('name');
             subcategorySlug = subcategoriesSelect.find(":selected").attr('name');
 
-            applyFilters('{{route('newsfeed.applyFilters')}}', _token, '', domain, categorySlug, subcategorySlug);
+            applyFilters('{{route('newsfeed.applyFilters')}}', _token, $('#orders'), domain, categorySlug, subcategorySlug);
         });
 
     </script>
