@@ -1,3 +1,11 @@
 .order-form {
     width: 70vh;
 }
+
+.form-control, .form-control:focus {
+    background-color: #f8fafc;
+    color: black;
+    border-radius: 1px;
+    border-color: #f2f4f5;
+    font-size: 20px;
+}

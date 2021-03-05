@@ -38,7 +38,7 @@
     </div>
 </div>
 <div class="bg-white rounded order-form px-5 py-3 my-3">
-    <div class="form-group row">
+    <div class="form-group row mb-4">
         <label for="{{$quantity}}" class="col-md-10 col-form-label text-md-left">{{ __('Cantitate') }}</label>
 
         <div class="col-md-12">
@@ -113,14 +113,14 @@
 
 <div class="bg-white rounded order-form px-5 py-5 my-3">
     @if (isset($img_path))
-        <div class="col col-md-4">
+        <div >
             Imagine curenta:<br>
-            <img src="{{$img_path}}" class="img-fluid"/>
+            <img src="{{$img_path}}" class="img-fluid col-md-10 col-form-label text-md-left"/>
         </div>
 
     @endif
 
-    <div class="custom-file">
+    <div class="form-control custom-file">
         <input type="file" class="custom-file-input" id="{{$icon}}" name="{{$icon}}">
         <label class="custom-file-label" for="{{$icon}}">Poza</label>
     </div>
