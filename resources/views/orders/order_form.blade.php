@@ -120,6 +120,35 @@
     </div>
 </div>
 
+<div class="form-group row align-items-center">
+    <div class="col-md-12">
+        <select class="form-control" id="{{$domain}}" name="{{$domain}}">
+            <option selected disabled>Domenii</option>
+            @foreach(\App\Models\App::getDomains() as $dom)
+                <option value="{{$dom->getSlug()}}" >{{$dom->getName()}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="form-group row align-items-center">
+    <div class="col-md-12">
+        <select class="form-control" disabled id="{{$category}}" name="{{$category}}">
+            <option selected disabled>Categorii</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group row align-items-center">
+    <div class="col-md-12">
+        <select class="form-control" disabled id="{{$subcategory}}" name="{{$subcategory}}">
+            <option selected disabled>Subcategorie</option>
+        </select>
+    </div>
+</div>
+
+
+
 <!-- Images -->
 <div class="bg-white rounded order-form px-5 py-5 my-3">
     @if (isset($img_path))
@@ -135,3 +164,31 @@
         <label class="custom-file-label" for="{{$icon}}">Poza</label>
     </div>
 </div>
+
+<script src="{{ asset('js/newsfeed.js') }}"></script>
+<script>
+    const domains{{$for}}Select = $('#{{$domain}}');
+    const categories{{$for}}Select = $('#{{$category}}');
+    const subcategories{{$for}}Select = $('#{{$subcategory}}');
+    const _token{{$for}} = $('meta[name="csrf-token"]').attr('content');
+
+    domains{{$for}}Select.on('change', function (event) {
+        let slug = domains{{$for}}Select.find(":selected").attr('value');
+        let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
+
+        url = url.replace(':tobereplaced', slug);
+        disableField(categories{{$for}}Select, "Categorie");
+        disableField(subcategories{{$for}}Select, "Subcategorie");
+
+        makeRequest(url, _token{{$for}}, categories{{$for}}Select, "Categorie");
+    });
+
+    categories{{$for}}Select.on('change', function (event) {
+        let slug = categories{{$for}}Select.find(":selected").attr('value');
+        let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
+        url = url.replace(':tobereplaced', slug);
+
+        makeRequest(url, _token{{$for}}, subcategories{{$for}}Select, "Subcategorie");
+    });
+
+</script>

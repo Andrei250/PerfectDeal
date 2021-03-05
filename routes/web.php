@@ -25,5 +25,9 @@ require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/order.php';
 require __DIR__.'/user.php';
+require __DIR__.'/domain.php';
+require __DIR__.'/category.php';
+require __DIR__.'/subcategory.php';
+require __DIR__.'/filters.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

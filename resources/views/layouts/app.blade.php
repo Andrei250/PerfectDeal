@@ -129,13 +129,17 @@
                                                         'min_quantity' => 'min_quantity',
                                                         'price' => 'price',
                                                         'expire_date' => 'expire_date',
+                                                        'domain' => 'domain_add',
+                                                        'category' => 'category_add',
+                                                        'subcategory' => 'subcategory_add',
                                                         'icon' => 'icon',
                                                         'first_title' => '',
                                                         'first_description' => '',
                                                         'first_quantity' => '',
                                                         'first_min_quantity' => '',
                                                         'first_price' => '',
-                                                        'first_expire_date' => ''])
+                                                        'first_expire_date' => '',
+                                                        'for' => 'Add'])
 
                     </form>
                 </div>

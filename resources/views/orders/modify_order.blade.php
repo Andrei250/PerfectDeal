@@ -30,13 +30,17 @@
                                                 'price' => 'price-order',
                                                 'expire_date' => 'expire_date-order',
                                                 'icon' => 'icon_order',
+                                                'domain' => 'domain_modify',
+                                                'category' => 'category_modify',
+                                                'subcategory' => 'subcategory_modify',
                                                 'img_path' => asset($order->img_path),
                                                 'first_title' => $order->title,
                                                 'first_description' => $order->description,
                                                 'first_quantity' => $order->quantity,
                                                 'first_min_quantity' => $order->min_quantity,
                                                 'first_price' => $order->price,
-                                                'first_expire_date' => $order->expire_date])
+                                                'first_expire_date' => $order->expire_date,
+                                                'for' => 'Modify'])
 
                 <div class="form-group row">
                     <input type="submit" class="btn btn-success mx-auto mt-4" value="Salveaza">
