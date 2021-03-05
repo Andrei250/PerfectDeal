@@ -1,7 +1,10 @@
 <link href="{{asset('css/order_form_style.css')}}" rel="stylesheet">
+
 <div>
     <h3>Modifică anunț</h3>
 </div>
+
+<!-- Title -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
         <label for="{{$title}}" class="col-md-10 col-form-label text-md-left">{{ __('Titlu') }}</label>
@@ -20,6 +23,7 @@
     </div>
 </div>
 
+<!-- Price -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
         <label for="{{$price}}" class="col-md-10 col-form-label text-md-left">{{ __('Pret per unitate') }}</label>
@@ -37,6 +41,8 @@
         </div>
     </div>
 </div>
+
+<!-- Quantity & minimum quantity -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row mb-4">
         <label for="{{$quantity}}" class="col-md-10 col-form-label text-md-left">{{ __('Cantitate') }}</label>
@@ -75,6 +81,7 @@
     </div>
 </div>
 
+<!-- Expiration date -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
         <label for="{{$expire_date}}"
@@ -93,6 +100,8 @@
         </div>
     </div>
 </div>
+
+<!-- Description -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
         <label for="{{$description}}" class="col-md-10 col-form-label text-md-left">{{ __('Descriere') }}</label>
@@ -111,6 +120,7 @@
     </div>
 </div>
 
+<!-- Images -->
 <div class="bg-white rounded order-form px-5 py-5 my-3">
     @if (isset($img_path))
         <div >
