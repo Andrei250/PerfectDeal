@@ -1,7 +1,7 @@
 /* css file for resources/views/orders/order_form.blade.php */
 
 .order-form {
-    width: 70vh;
+    width: 100vh;
 }
 
 .form-control, .form-control:focus {

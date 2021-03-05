@@ -1,9 +1,5 @@
 <link href="{{asset('css/order_form_style.css')}}" rel="stylesheet">
 
-<div>
-    <h3>Modifică anunț</h3>
-</div>
-
 <!-- Title -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
