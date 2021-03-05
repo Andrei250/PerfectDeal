@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div id="orders" class="row col-md-9 mx-auto">
+        <div id="orders" class="row col-md-12 mx-auto">
 
         </div>
 

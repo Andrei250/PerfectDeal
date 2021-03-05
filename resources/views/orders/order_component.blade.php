@@ -1,6 +1,6 @@
 <link href="{{asset('css/order_card_style.css')}}" rel="stylesheet">
 
-<div class="row my-4">
+<div class="row my-4 col-md-12">
     <div class="col col-md-7 bg-white rounded mx-auto">
         <div class="float-left col col-md-3 h-auto py-3">
             <img class="img-fluid"
