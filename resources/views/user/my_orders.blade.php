@@ -21,7 +21,6 @@
                     <table class="w-100 table table-striped m-0 p-0">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Titlu</th>
                             <th scope="col">Actiuni</th>
                         </tr>
@@ -30,7 +29,6 @@
                         <tbody>
                         @foreach($orders as $order)
                             <tr>
-                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $order->title }}</td>
                                 <td>
                                     <a href="{{route('company.showOrder', ['order' => $order])}}">

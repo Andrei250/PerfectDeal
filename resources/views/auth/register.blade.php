@@ -37,7 +37,7 @@
 
                                     @error('name')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -57,7 +57,7 @@
 
                                     @error('email')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -77,7 +77,7 @@
 
                                     @error('phone')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -97,7 +97,7 @@
 
                                     @error('address')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -114,7 +114,7 @@
                             </div>
 
                             <!-- Next Slide Button -->
-                            <div class="form-group row col-md-12 mx-auto d-flex flex-row-reverse" >
+                            <div class="form-group row col-md-12 mx-auto d-flex flex-row-reverse">
                                 <a id="first-button-carousel"
                                    class="btn btn-primary col-md-3 fadeIn fourth"
                                    href="#register-carousel"
@@ -145,7 +145,7 @@
                                              onblur="this.placeholder = 'Codul Caen'"></x-input>
                                     @error('caen_code')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -165,7 +165,7 @@
 
                                     @error('cif')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -185,7 +185,7 @@
 
                                     @error('com_reg')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -244,7 +244,7 @@
 
                                     @error('password')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -265,7 +265,7 @@
 
                                     @error('password_confirmation')
                                     <br>
-                                        <span class="text-danger" role="alert">
+                                    <span class="text-danger" role="alert">
                                             <strong>
                                                 {{ $message }}
                                             </strong>
@@ -314,10 +314,10 @@
             $('#error-slide-2').css('display', 'none');
         }
 
-        $('#first-button-carousel').click(function(e) {
+        $('#first-button-carousel').click(function (e) {
             switchOffErrors();
 
-            if ($('#name').val() === '' || $('#email').val()=== '' || $('#phone').val() === '' || $('#address').val() === '') {
+            if ($('#name').val() === '' || $('#email').val() === '' || $('#phone').val() === '' || $('#address').val() === '') {
                 $('#error-slide-1').css('display', 'block');
                 e.preventDefault();
                 e.stopPropagation();
@@ -326,7 +326,7 @@
             }
         });
 
-        $('#second-button-carousel').click(function(e) {
+        $('#second-button-carousel').click(function (e) {
             switchOffErrors();
 
             if ($('#caen_code').val() === '' || $('#cif').val() === '' || $('#com_reg').val() === '') {
