@@ -10,7 +10,7 @@ function makeRequest(url, _token, field, text) {
         success: function (response) {
             field.removeAttr('disabled');
             field.html('');
-            field.append('<option selected name="disabled" disabled>' + text + '</option>');
+            field.append('<option selected name="none" disabled>' + text + '</option>');
 
             response[0].forEach(element => {
                 field.append('<option value="' + element['slug'] + '" name="' + element['slug'] + '">' + element['name'] + '</option>');
@@ -22,7 +22,7 @@ function makeRequest(url, _token, field, text) {
 function disableField(field, text) {
     field.attr('disabled', true);
     field.html('');
-    field.append('<option selected name="disabled" disabled>' + text + '</option>');
+    field.append('<option selected name="none" disabled>' + text + '</option>');
 }
 
 function applyFilters(url, _token, place, domain, category, subcategory) {

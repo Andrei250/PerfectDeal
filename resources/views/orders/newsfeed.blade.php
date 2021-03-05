@@ -20,13 +20,13 @@
         <div class="row col-md-9 mx-auto">
             <div class="col-md-5">
                 <select class="form-control" disabled id="categories-select">
-                    <option selected disabled>Categorie</option>
+                    <option selected disabled name="none">Categorie</option>
                 </select>
             </div>
 
             <div class="col-md-5">
                 <select class="form-control" id="subcategories-select" disabled>
-                    <option selected disabled>Subcategorie</option>
+                    <option selected disabled name="none">Subcategorie</option>
                 </select>
             </div>
 
