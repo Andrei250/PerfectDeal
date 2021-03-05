@@ -5,6 +5,9 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
@@ -25,7 +28,7 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -34,8 +37,22 @@ class Order extends Model
         return $this->hasMany(OrderRequest::class);
     }
 
-    public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price)
+    public function domains(): BelongsToMany
     {
+        return $this->belongsToMany(Domain::class, 'order_domain', 'order_id', 'domain_id');
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'order_category', 'order_id', 'category_id');
+    }
+
+    public function subcategories(): BelongsToMany
+    {
+        return $this->belongsToMany(SubCategory::class, 'order_subcategory', 'order_id', 'subcategory_id');
+    }
+
+    public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {
         $this->title = $title;
         $this->description = $description;
         $this->quantity = $quantity;
