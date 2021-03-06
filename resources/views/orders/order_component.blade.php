@@ -26,12 +26,12 @@
                         la: {{!is_null($order) ? $order->getExpireDate() : "Nu are data de expirare"}}</p>
                 </div>
                 <div class="mt-auto">
-                    <div class="float-right">
-                        <button class="btn btn-primary">
+                    <div class="float-right btn-group">
+                        <button @if(\App\Models\OrderRequest::checkHasRequest(\Illuminate\Support\Facades\Auth::user()->id, $order->id)) disabled @endif class="btn btn-primary custom-width" data-toggle="modal" data-target="#modal-order-{{$order->id}}">
                             Cumpara
                         </button>
 
-                        <button class="btn btn-outline-primary">
+                        <button class="btn btn-outline-primary custom-width">
                             Negociaza
                         </button>
                     </div>
@@ -40,6 +40,7 @@
         </div>
     </div>
 </div>
+
 <script>
     function checkItem(element) {
         console.log(element.classList);

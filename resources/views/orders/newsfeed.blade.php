@@ -41,6 +41,7 @@
         <div id="orders" class="row col-md-12 mx-auto">
             @foreach($orders as $order)
                 @include('orders.order_component', ['order' => $order])
+                @include('orders.order_buy_modal', ['order' => $order])
             @endforeach
         </div>
 
