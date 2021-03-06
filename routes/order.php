@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Companies\OrderController;
+use App\Http\Controllers\Companies\OrderRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,7 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/change/{order}', [OrderController::class, 'showOrder'])->name('company.showOrder');
 
     Route::post('/company/modify/{order}', [OrderController::class, 'modifyOrder'])->name('company.modifyOrder');
+
+    Route::post('/company/make_request/{order}', [OrderRequestController::class, 'makeOrderRequest'])->name('order.makeRequest');
 
 });

@@ -18,32 +18,32 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Cantitate dorita:</span>
-                        </div>
-                        <input type="number" class="form-control" id="quantity" name="quantity" min="{{!is_null($order) ? $order->getMinQuantity() : 0 }}" max="{{!is_null($order) ? $order->getQuantity() : 0 }}">
-                    </div>
-
-                    <div class="input-group input-group mb-3">
-                        <div style="height: 37px" class="input-group-prepend">
-                            <span class="input-group-text">Data livrare:</span>
-                        </div>
-                        <input type="date" class="form-control" id="datemax" name="datemax" max="{{!is_null($order) ? $order->getExpireDate() : 2100-12-31 }}"><br><br>
-                    </div>
-
-                    <label for="transport">Transport asigurat de mine: <br>(introduceti data cand doriti sa ridicati marfa)</label>
-                    <div class="input-group mb-3">
-                        <div style="height: 37px"class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" aria-label="Checkbox for following text input">
+                    <form action="{{route('order.makeRequest', ["order"=>$order])}}" method="POST">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Cantitate dorita:</span>
                             </div>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="{{!is_null($order) ? $order->getMinQuantity() : 0 }}" max="{{!is_null($order) ? $order->getQuantity() : 0 }}">
                         </div>
-                        <input type="date" class="form-control" placeholder="Data in care doresc sa ridic marfa." id="datemax" name="datemax" max="{{!is_null($order) ? $order->getExpireDate() : 2100-12-31 }}"><br><br>
-                    </div>
 
+                        <div class="input-group input-group mb-3">
+                            <div style="height: 37px" class="input-group-prepend">
+                                <span class="input-group-text">Data livrare:</span>
+                            </div>
+                            <input type="date" class="form-control" id="datemax" name="datemax" max="{{!is_null($order) ? $order->getExpireDate() : 2100-12-31 }}"><br><br>
+                        </div>
 
-
+                        <label for="transport">Transport asigurat de mine: <br>(introduceti data cand doriti sa ridicati marfa)</label>
+                        <div class="input-group mb-3">
+                            <div style="height: 37px"class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Checkbox for following text input">
+                                </div>
+                            </div>
+                            <input type="date" class="form-control" placeholder="Data in care doresc sa ridic marfa." id="datemax" name="datemax" max="{{!is_null($order) ? $order->getExpireDate() : 2100-12-31 }}"><br><br>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
