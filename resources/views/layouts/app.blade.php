@@ -93,9 +93,9 @@
                     <ul class="navbar-nav">
                         @auth
                             <li class="nav-item">
-                                <button type="button" class="btn bg-white" data-toggle="modal" data-target="#add-new-product-modal">
+                                <a href="{{route('company.showNewOrder')}}" type="button" class="btn bg-white">
                                     Adauga anunt nou
-                                </button>
+                                </a>
                             </li>
                         @endauth
                     </ul>
@@ -110,46 +110,6 @@
         </main>
     </div>
 
-    <div class="modal fade" id="add-new-product-modal" tabindex="-1" role="dialog" aria-labelledby="add-new-product-modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="add-new-product-form" action="{{route('company.addNewOrder')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-
-                       @include('orders.order_form', ['title' => 'title',
-                                                        'description' => 'description',
-                                                        'quantity' => 'quantity',
-                                                        'min_quantity' => 'min_quantity',
-                                                        'price' => 'price',
-                                                        'expire_date' => 'expire_date',
-                                                        'domain' => 'domain_add',
-                                                        'category' => 'category_add',
-                                                        'subcategory' => 'subcategory_add',
-                                                        'icon' => 'icon',
-                                                        'first_title' => '',
-                                                        'first_description' => '',
-                                                        'first_quantity' => '',
-                                                        'first_min_quantity' => '',
-                                                        'first_price' => '',
-                                                        'first_expire_date' => '',
-                                                        'for' => 'Add'])
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="submitOrderForm()">Posteaza</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 </body>
@@ -157,18 +117,8 @@
 @yield('scripts')
 <script>
 
-
-    function submitOrderForm() {
-        $('#add-new-product-form').submit();
-    }
-
     $(document).ready(function () {
         @yield('ready-scritps')
-        $('#add-new-product-modal').on('hidden.bs.modal', function (e) {
-            //reset form on closing modal
-            $('#add-new-product-form')[0].reset();
-        })
-
     });
 </script>
 </html>

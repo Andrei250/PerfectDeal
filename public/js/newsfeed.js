@@ -36,6 +36,7 @@ function applyFilters(url, _token, place, domain, category, subcategory) {
             'subcategory': subcategory,
         },
         success: function (response) {
+            place.html("");
             response[0].forEach(element => place.append(element));
         }
     });
