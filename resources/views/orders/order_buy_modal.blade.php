@@ -18,8 +18,10 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-{{--                    <form id="request-form-{{$order->id}}" action="{{route('order.makeRequest', ["order"=>$order])}}" method="POST">--}}
-{{--                        @csrf--}}
+                    <div id="errors-div-{{$order->id}}">
+
+                    </div>
+                    <form id="request-form-{{$order->id}}">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Cantitate dorita:</span>
@@ -43,12 +45,12 @@
                             </div>
                             <input type="date" id="pickup-date-{{$order->id}}" class="form-control" placeholder="Data in care doresc sa ridic marfa."  name="date-pickup" max="{{!is_null($order) ? $order->getExpireDate() : 2100-12-31 }}"><br><br>
                         </div>
-{{--                    </form>--}}
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuleaza</button>
-                <button id="submit-request-{{$order->id}}" type="button" class="btn btn-primary">Plaseaza comanda</button>
+                <button id="submit-request-{{$order->id}}" @if(\App\Models\OrderRequest::checkHasRequest(\Illuminate\Support\Facades\Auth::user()->id, $order->id)) disabled @endif type="button" class="btn btn-primary">Plaseaza comanda</button>
             </div>
         </div>
     </div>
@@ -76,7 +78,8 @@
                 'pickup-date': pickupDate{{$order->id}},
             },
             success: function(response) {
-                console.log(response);
+                $('#request-form-{{$order->id}}')[0].reset();
+                $('#errors-div-{{$order->id}}').html(response);
             }
         });
 

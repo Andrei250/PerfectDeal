@@ -27,7 +27,7 @@
                 </div>
                 <div class="mt-auto">
                     <div class="float-right btn-group">
-                        <button class="btn btn-primary custom-width" data-toggle="modal" data-target="#modal-order-{{$order->id}}">
+                        <button @if(\App\Models\OrderRequest::checkHasRequest(\Illuminate\Support\Facades\Auth::user()->id, $order->id)) disabled @endif class="btn btn-primary custom-width" data-toggle="modal" data-target="#modal-order-{{$order->id}}">
                             Cumpara
                         </button>
 
