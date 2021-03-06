@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     public function index() {
-//        $orders = Order::where(['status' => 'Available'])->orderBy('created_at', 'DESC')->paginate(10);
+        $orders = Order::where(['status' => 'Available'])->orderBy('created_at', 'DESC')->get();
         $domains = Domain::all();
 
-        return view('orders.newsfeed', ['domains' => $domains]);
+        return view('orders.newsfeed', ['domains' => $domains, 'orders' => $orders]);
     }
 
     public function showNewOrderForm() {
