@@ -1,5 +1,9 @@
 <link href="{{asset('css/order_form_style.css')}}" rel="stylesheet">
 
+<div class="py-3">
+    <h3>Modifică anunț</h3>
+</div>
+
 <!-- Title -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
@@ -19,10 +23,39 @@
     </div>
 </div>
 
+<div class="bg-white rounded order-form px-5 py-5 my-3">
+    <div class="form-group row align-items-center">
+        <div class="col-md-12">
+            <select class="form-control" id="{{$domain}}" name="{{$domain}}">
+                <option selected disabled>Domenii</option>
+                @foreach(\App\Models\App::getDomains() as $dom)
+                    <option value="{{$dom->getSlug()}}">{{$dom->getName()}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row align-items-center">
+        <div class="col-md-12">
+            <select class="form-control" disabled id="{{$category}}" name="{{$category}}">
+                <option selected disabled>Categorii</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row align-items-center">
+        <div class="col-md-12">
+            <select class="form-control" disabled id="{{$subcategory}}" name="{{$subcategory}}">
+                <option selected disabled>Subcategorie</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 <!-- Price -->
 <div class="bg-white rounded order-form px-5 py-3 my-3">
     <div class="form-group row">
-        <label for="{{$price}}" class="col-md-10 col-form-label text-md-left">{{ __('Pret per unitate') }}</label>
+        <label for="{{$price}}" class="col-md-10 col-form-label text-md-left">{{ __('Pret per unitate (lei)') }}</label>
 
         <div class="col-md-12">
             <input id="{{$price}}" type="number" class="form-control @error($price) is-invalid @enderror"
@@ -116,39 +149,10 @@
     </div>
 </div>
 
-<div class="form-group row align-items-center">
-    <div class="col-md-12">
-        <select class="form-control" id="{{$domain}}" name="{{$domain}}">
-            <option selected disabled>Domenii</option>
-            @foreach(\App\Models\App::getDomains() as $dom)
-                <option value="{{$dom->getSlug()}}" >{{$dom->getName()}}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-<div class="form-group row align-items-center">
-    <div class="col-md-12">
-        <select class="form-control" disabled id="{{$category}}" name="{{$category}}">
-            <option selected disabled>Categorii</option>
-        </select>
-    </div>
-</div>
-
-<div class="form-group row align-items-center">
-    <div class="col-md-12">
-        <select class="form-control" disabled id="{{$subcategory}}" name="{{$subcategory}}">
-            <option selected disabled>Subcategorie</option>
-        </select>
-    </div>
-</div>
-
-
-
 <!-- Images -->
 <div class="bg-white rounded order-form px-5 py-5 my-3">
     @if (isset($img_path))
-        <div >
+        <div>
             Imagine curenta:<br>
             <img src="{{$img_path}}" class="img-fluid col-md-10 col-form-label text-md-left"/>
         </div>
