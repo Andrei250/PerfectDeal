@@ -26,4 +26,6 @@ class OrderRequest extends Model
     {
         return count(OrderRequest::where(['order_id' => $order_id, 'user_id' => $user_id])->get()) != 0;
     }
+
+
 }
