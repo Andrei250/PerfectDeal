@@ -6,14 +6,7 @@
 
 @section('content')
 
-    @foreach($orders as $order)
-        @include('orders.order_component', ['order' => $order])
-        @include('orders.order_buy_modal', ['order' => $order])
-
-    @endforeach
-    {{$orders->links('vendor.pagination.bootstrap-4')}}
-
-    <{{--div class="container-fluid">
+    <div class="container-fluid">
         <div class="row justify-content-around w-100 h-auto mb-4">
             @foreach($domains as $domain)
                 <div class="d-flex flex-column align-items-center h-auto">
@@ -47,10 +40,11 @@
         <div id="orders" class="row col-md-12 mx-auto">
             @foreach($orders as $order)
                 @include('orders.order_component', ['order' => $order])
+                @include('orders.order_buy_modal', ['order' => $order])
             @endforeach
         </div>
 
-    </div>--}}
+    </div>
 @endsection
 
 

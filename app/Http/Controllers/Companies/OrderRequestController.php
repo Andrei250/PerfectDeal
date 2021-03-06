@@ -9,6 +9,6 @@ use Illuminate\Http\Request;
 class OrderRequestController extends Controller
 {
     public function makeOrderRequest(Request $request, Order $order){
-
+        return $request->all();
     }
 }
