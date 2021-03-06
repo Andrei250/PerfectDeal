@@ -42,6 +42,7 @@
             @foreach($orders as $order)
                 @include('orders.order_component', ['order' => $order])
                 @include('orders.order_buy_modal', ['order' => $order])
+                @include('orders.order_neg_modal', ['order' => $order])
             @endforeach
         </div>
 
