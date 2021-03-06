@@ -31,7 +31,8 @@
                             Cumpara
                         </button>
 
-                        <button class="btn btn-outline-primary">
+                        <button class="btn btn-outline-primary" data-toggle="modal"
+                                data-target="#negociere-modal-order-{{$order->id}}">
                             Negociaza
                         </button>
                     </div>
@@ -39,7 +40,40 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="negociere-modal-order-{{$order->id}}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h4 class="modal-title"
+                        id="exampleModalLongTitle">{{ !is_null($order) ? $order->getTitle() : "Fara Titlu" }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="px-4 pt-4 float-left">
+                    <h5>Trimiteți vânzatorului oferta dumneavoastră</h5>
+                </div>
+
+                <div class="modal-body w-100 d-flex justify-content-center">
+                    <label>
+                        <textarea type="text" class="form-control" cols="50" rows="10"></textarea>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anulează</button>
+                    <button type="button" class="btn btn-primary">Trimite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
 <script>
     function checkItem(element) {
         console.log(element.classList);
