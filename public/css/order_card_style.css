@@ -14,6 +14,10 @@
 
 }
 
+.custom-width {
+    width: 100px !important;
+}
+
 @keyframes fave-heart {
     0% {
         background-position: 0 0;

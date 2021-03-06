@@ -33,6 +33,10 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function orderRequests(){
+        return $this->hasMany(OrderRequest::class);
+    }
+
     public function domains(): BelongsToMany
     {
         return $this->belongsToMany(Domain::class, 'order_domain', 'order_id', 'domain_id');
@@ -124,4 +128,5 @@ class Order extends Model
 
         return 'Fara pret';
     }
+
 }
