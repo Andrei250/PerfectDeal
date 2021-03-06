@@ -21,6 +21,10 @@ class OrderController extends Controller
         return view('orders.newsfeed', ['domains' => $domains]);
     }
 
+    public function showNewOrderForm() {
+        return view('orders.add_new_order');
+    }
+
     public function addNewOrder(Request $request): RedirectResponse
     {
         $this->validateRequest($request, 'title', 'description', 'quantity', 'min_quantity', 'expire_date', 'price');
