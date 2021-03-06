@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Companies\OrderController;
+use App\Http\Controllers\Companies\OrderNegotiationController;
 use App\Http\Controllers\Companies\OrderRequestController;
+use App\Models\OrderNegotiation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,8 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::post('/company/modify/{order}', [OrderController::class, 'modifyOrder'])->name('company.modifyOrder');
 
     Route::post('/company/make_request/{order}', [OrderRequestController::class, 'makeOrderRequest'])->name('order.makeRequest');
+
+    Route::post('/company/make_negotiation/{order}', [OrderNegotiationController::class, 'makeOrderNegotiation'])->name('order.makeNeg');
 
     Route::get('/company/add_order', [OrderController::class, 'showNewOrderForm'])->name('company.showNewOrder');
 });
