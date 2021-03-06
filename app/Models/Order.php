@@ -52,6 +52,11 @@ class Order extends Model
         return $this->belongsToMany(SubCategory::class, 'order_subcategory', 'order_id', 'subcategory_id');
     }
 
+    public function orderNegotiations(): HasMany
+    {
+        return $this->hasMany(OrderNegotiation::class);
+    }
+
     public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {
         $this->title = $title;
         $this->description = $description;
