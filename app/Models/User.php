@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -49,12 +51,13 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    public function role(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function role(): HasOne
     {
         return $this->hasOne(Role::class);
     }
 
-    public function orderRequests(){
+    public function orderRequests(): HasMany
+    {
         return $this->hasMany(OrderRequest::class);
     }
 
@@ -63,8 +66,13 @@ class User extends Authenticatable
         return $this->user_role == 1;
     }
 
-    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function orderNegotiations(): HasMany
+    {
+        return $this->hasMany(OrderNegotiation::class);
     }
 }

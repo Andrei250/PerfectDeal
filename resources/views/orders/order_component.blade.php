@@ -27,11 +27,14 @@
                 </div>
                 <div class="mt-auto">
                     <div class="float-right btn-group">
-                        <button @if(\App\Models\OrderRequest::checkHasRequest(\Illuminate\Support\Facades\Auth::user()->id, $order->id)) disabled @endif class="btn btn-primary custom-width" data-toggle="modal" data-target="#modal-order-{{$order->id}}">
+                        <button class="btn btn-primary custom-width"
+                                data-target="#modal-order-{{$order->id}}" data-toggle="modal"
+                                @if(\App\Models\OrderRequest::checkHasRequest(\Illuminate\Support\Facades\Auth::user()->id, $order->id)) disabled @endif>
                             Cumpara
                         </button>
 
-                        <button class="btn btn-outline-primary custom-width">
+                        <button class="btn btn-outline-primary" data-toggle="modal"
+                                data-target="#negociere-modal-order-{{$order->id}}">
                             Negociaza
                         </button>
                     </div>
