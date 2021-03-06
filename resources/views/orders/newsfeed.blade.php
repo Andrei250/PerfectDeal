@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('headscripts')
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @endsection
 
 @section('content')
@@ -10,14 +10,15 @@
         <div class="row justify-content-around w-100 h-auto mb-4">
             @foreach($domains as $domain)
                 <div class="d-flex flex-column align-items-center h-auto">
-                    <img src="{{$domain->getIconPath()}}" class="rounded-circle col-md-8" style="cursor:pointer" onclick="getDomain('{{$domain->getSlug()}}')"/>
+                    <img src="{{$domain->getIconPath()}}" class="rounded-circle col-md-8" style="cursor:pointer"
+                         onclick="getDomain('{{$domain->getSlug()}}')"/>
 
                     <h4 class="text-center font-weight-bold">{{$domain->getName()}}</h4>
                 </div>
             @endforeach
         </div>
 
-        <div class="row col-md-9 mx-auto">
+        <div class="row col-md-7 mx-auto pb-4 align-items-center">
             <div class="col-md-5">
                 <select class="form-control" disabled id="categories-select">
                     <option selected disabled name="none">Categorie</option>

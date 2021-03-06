@@ -23,6 +23,7 @@
     </div>
 </div>
 
+<!-- category -->
 <div class="bg-white rounded order-form px-5 py-5 my-3">
     <div class="form-group row align-items-center">
         <div class="col-md-12">
