@@ -45,7 +45,9 @@
         </div>
 
         <div id="orders" class="row col-md-12 mx-auto">
-
+            @foreach($orders as $order)
+                @include('orders.order_component', ['order' => $order])
+            @endforeach
         </div>
 
     </div>--}}

@@ -72,7 +72,7 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary fadeIn third col-md-4">
-                            {{ __('Register') }}
+                            {{ __('Login') }}
                         </button>
                     </div>
                 </div>
