@@ -19,6 +19,11 @@
                 <h5>Trimiteți vânzatorului oferta dumneavoastră</h5>
             </div>
             <form id="neg-form-{{$order->id}}">
+                <div class="container col-md-11">
+                    <p>Cantitate minima: {{$order->getMinQuantity()}}</p>
+                    <p>Stoc: {{$order->getQuantity()}}</p>
+                    <p>Data expirarii: {{$order->getExpireDate()}}</p>
+                </div>
                 <div class="modal-body w-100 d-flex justify-content-center">
                     <label>
                         <textarea type="text" id="description-neg-{{$order->id}}" class="form-control" cols="50" rows="10"></textarea>

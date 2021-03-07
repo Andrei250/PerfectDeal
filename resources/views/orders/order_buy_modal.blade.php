@@ -22,6 +22,11 @@
 
                     </div>
                     <form id="request-form-{{$order->id}}">
+                        <div class="container">
+                            <p>Cantitate minima: {{$order->getMinQuantity()}}</p>
+                            <p>Stoc: {{$order->getQuantity()}}</p>
+                            <p>Data expirarii: {{$order->getExpireDate()}}</p>
+                        </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Cantitate dorita:</span>
@@ -84,4 +89,6 @@
         });
 
     })
+
+    //TODO update total function
 </script>
