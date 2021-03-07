@@ -20,4 +20,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account/my_requests', [UserController::class, 'renderMyRequests'])->middleware('company')->name('user.myRequests');
 
     Route::post('/account/refuse_request/{order_request}', [OrderRequestController::class, 'refuseRequest'])->middleware('company')->name('user.refuseRequest');
+
+    Route::post('/account/accept_request/{order_request}', [OrderRequestController::class, 'acceptRequest'])->middleware('company')->name('user.acceptRequest');
 });

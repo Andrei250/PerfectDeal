@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col col-md-10 rounded mx-auto p-0">
                 <div class="alert alert-success" id="success-div-request" style="display:none;">
-                    Request sters cu succes.
+                    Comanda efectuata cu succes.
                 </div>
 
                 <div class="alert alert-danger" id="error-div-request" style="display:none;">
-                    Ne pare rau, dar nu am putut sterge requestul. Daca persista, va rugam sa ne contactati.
+                    Ne pare rau, dar nu am putut efectua requestul. Daca persista, va rugam sa ne contactati.
                 </div>
 
                 @forelse($requests as $request)
                     <div class="bg-white rounded col col-md-8 mx-auto py-3" id="request-{{$request->id}}">
-                        <p>Comanda: {{$request->order->id}}</p>
+                        <p>Comanda: {{$request->order->getTitle()}}</p>
                         <p>Cantitate comandata: {{$request->quantity}}</p>
                         <p>Data de livrare: {{$request->getDeliveryDate()}}</p>
 
@@ -27,7 +27,7 @@
                                 Refuza
                             </button>
 
-                            <button class="btn btn-success">
+                            <button class="btn btn-success" onclick="acceptItem('{{$request->id}}')">
                                 Accepta
                             </button>
                         </div>
@@ -62,6 +62,31 @@
                     method: "POST",
                     data: {
                       _token: _token_request,
+                    },
+                    success: function (response) {
+                        if (response === 'error') {
+                            error_div.css('display', 'block');
+                        } else {
+                            success_div.css('display', 'block');
+                            $('#request-' + id).remove();
+                        }
+                    },
+                });
+            }
+        }
+
+        function acceptItem(id) {
+            let url = '{{route('user.acceptRequest', ['order_request' => ':tobereplaced'])}}';
+            url = url.replace(':tobereplaced', id);
+            error_div.css('display', 'none');
+            success_div.css('display', 'none');
+
+            if (confirm("Esti sigur ca doresti sa accepti?")) {
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: {
+                        _token: _token_request,
                     },
                     success: function (response) {
                         if (response === 'error') {
