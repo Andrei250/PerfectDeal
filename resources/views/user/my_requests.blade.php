@@ -17,7 +17,7 @@
                 @endif
 
                 @forelse($requests as $request)
-                    <div class="bg-white rounded col col-md-8 mx-auto py-3">
+                    <div class="bg-white rounded col col-md-8 mx-auto py-3" id="request-{{$request->id}}">
                         <p>Comanda: {{$request->order->id}}</p>
                         <p>Cantitate comandata: {{$request->quantity}}</p>
                         <p>Data de livrare: {{$request->getDeliveryDate()}}</p>
@@ -27,7 +27,7 @@
                         @endif
 
                         <div class="w-100 d-flex justify-content-around">
-                            <button class="btn btn-danger" id="refuse-btn-{{$request->id}}">
+                            <button class="btn btn-danger" id="refuse-btn-{{$request->id}}" onclick="">
                                 Refuza
                             </button>
 
@@ -49,5 +49,11 @@
 @endsection
 
 @section('scripts')
+    <script>
+        function deleteItem(id) {
+            let url = '{{route('domain.getCategories', ['domain' => ':tobereplaced'])}}';
+            url = url.replace(':tobereplaced', id);
 
+        }
+    </script>
 @endsection
