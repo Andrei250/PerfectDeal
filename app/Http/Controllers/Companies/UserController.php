@@ -16,7 +16,9 @@ class UserController extends Controller
     }
 
     public function renderMyRequests() {
-        $requests = Auth::user()->selfOrderRequests;
+        $requests = Auth::user()->selfOrderRequests->filter(function ($item) {
+            return $item->status == 'opened';
+        })->values();
 
         return view('user.my_requests', ['requests' => $requests]);
     }
