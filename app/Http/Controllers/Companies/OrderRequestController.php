@@ -48,4 +48,16 @@ class OrderRequestController extends Controller
             return '<p class="alert alert-danger">A avut loc o eroare. Daca persista, va rugam sa ne contactati.</p>';
         }
     }
+
+    public function refuseRequest(Request $request, OrderRequest $order_request) {
+        $order_request->status = 'refused';
+
+        try {
+            $order_request->update();
+        } catch(\Exception $e) {
+            return 'error';
+        }
+
+        return 'success';
+    }
 }
