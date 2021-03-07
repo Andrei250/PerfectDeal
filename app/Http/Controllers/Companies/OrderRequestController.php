@@ -73,6 +73,10 @@ class OrderRequestController extends Controller
                 $order->min_quantity = $order->quantity;
             }
 
+            if ($order->quantity == 0) {
+                $order->status = "Done";
+            }
+
             try {
                 $order->update();
             } catch(\Exception $exception) {
