@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account/my_orders', [UserController::class, 'renderMyOrders'])->middleware('company')->name('user.myOrders');
+
+    Route::get('/account/my_requests', [UserController::class, 'renderMyRequests'])->middleware('company')->name('user.myRequests');
 });
