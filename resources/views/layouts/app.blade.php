@@ -75,6 +75,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="{{route('user.myRequests')}}" class="dropdown-item">
+                                        {{__('Cererile mele')}}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
