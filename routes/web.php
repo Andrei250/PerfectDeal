@@ -29,5 +29,6 @@ require __DIR__.'/domain.php';
 require __DIR__.'/category.php';
 require __DIR__.'/subcategory.php';
 require __DIR__.'/filters.php';
+require __DIR__.'/notification.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
