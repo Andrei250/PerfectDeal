@@ -32,4 +32,31 @@ class OrderRequest extends Model
     {
         return $this->hasMany(Notification::class);
     }
+
+    public function getDeliveryDate(): string
+    {
+        if (isset($this->delivery_date) && !is_null($this->delivery_date)) {
+            return date("d M Y", strtotime($this->delivery_date));
+        }
+
+        return 'Eroare: Acest request nu are data de livrare.';
+    }
+
+    public function getPickupDate(): string
+    {
+        if (isset($this->pickup_date) && !is_null($this->pickup_date)) {
+            return date("d M Y", strtotime($this->pickup_date));
+        }
+
+        return 'Fara data de pickup.';
+    }
+
+    public function getSelfTransport(): bool
+    {
+        if (!is_null($this->self_transport)) {
+            return $this->self_transport;
+        }
+
+        return false;
+    }
 }

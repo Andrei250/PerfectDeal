@@ -48,4 +48,46 @@ class OrderRequestController extends Controller
             return '<p class="alert alert-danger">A avut loc o eroare. Daca persista, va rugam sa ne contactati.</p>';
         }
     }
+
+    public function refuseRequest(Request $request, OrderRequest $order_request): string
+    {
+        $order_request->status = 'refused';
+
+        try {
+            $order_request->update();
+        } catch(\Exception $e) {
+            return 'error';
+        }
+
+        return 'success';
+    }
+
+    public function acceptRequest(Request $request, OrderRequest $order_request): string
+    {
+        $order_request->status = 'accepted';
+        $order = $order_request->order;
+
+        try {
+            $order->quantity = $order->quantity - intval($order_request->quantity);
+            if ($order->quantity < $order->min_quantity) {
+                $order->min_quantity = $order->quantity;
+            }
+
+            if ($order->quantity == 0) {
+                $order->status = "Done";
+            }
+
+            try {
+                $order->update();
+            } catch(\Exception $exception) {
+                return 'error';
+            }
+
+            $order_request->update();
+        } catch(\Exception $e) {
+            return 'error';
+        }
+
+        return 'success';
+    }
 }
