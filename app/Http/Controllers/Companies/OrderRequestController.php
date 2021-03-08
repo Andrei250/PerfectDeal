@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Companies;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\OrderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderRequestController extends Controller
 {
@@ -55,6 +57,21 @@ class OrderRequestController extends Controller
 
         try {
             $order_request->update();
+
+            $notification = new Notification();
+
+            $notification->description = "Comanda cu titlul " . $order_request->order->getTitle() . " a fost refuzata";
+            $notification->user_id = $order_request->user->id;
+
+            try {
+                $notification->save();
+                DB::table('order_request_notification')->insert([
+                    ['order_request_id' => $order_request->id, 'notification_id' => $notification->id]
+                ]);
+            } catch (\Exception $e) {
+
+            }
+
         } catch(\Exception $e) {
             return 'error';
         }
@@ -84,6 +101,20 @@ class OrderRequestController extends Controller
             }
 
             $order_request->update();
+
+            $notification = new Notification();
+
+            $notification->description = "Comanda cu titlul " . $order_request->order->getTitle() . " a fost acceptata";
+            $notification->user_id = $order_request->user->id;
+
+            try {
+                $notification->save();
+                DB::table('order_request_notification')->insert([
+                    ['order_request_id' => $order_request->id, 'notification_id' => $notification->id]
+                ]);
+            } catch (\Exception $e) {
+
+            }
         } catch(\Exception $e) {
             return 'error';
         }
