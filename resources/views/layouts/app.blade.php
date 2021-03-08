@@ -40,7 +40,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard') }}"> DashBoard </a>
+                                <a class="nav-link" href="{{ route('company.orders') }}"> Oferte </a>
                             </li>
 
                             @if(\Illuminate\Support\Facades\Auth::user()->checkAdminStatus())
@@ -77,6 +77,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{route('user.myRequests')}}" class="dropdown-item">
                                         {{__('Cererile mele')}}
+                                    </a>
+
+                                    <a href="{{route('user.myOrders')}}" class="dropdown-item">
+                                        {{__('Ofertele mele')}}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
