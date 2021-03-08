@@ -57,6 +57,11 @@ class Order extends Model
         return $this->hasMany(OrderNegotiation::class);
     }
 
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+
     public function builder($title, $description, $quantity, $min_quantity, $expire_date, $price) {
         $this->title = $title;
         $this->description = $description;

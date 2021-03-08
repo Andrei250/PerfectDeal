@@ -86,4 +86,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(OrderNegotiation::class, Order::class);
     }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

@@ -22,4 +22,13 @@ class UserController extends Controller
 
         return view('user.my_requests', ['requests' => $requests]);
     }
+
+    public function renderMyNegotiations() {
+        $negotiations = Auth::user()->selfOrderNegotiations->filter(function ($item) {
+            return $item->status == 'opened';
+        })->values();
+
+        return view('user.my_negotiations', ['negotiations' => $negotiations]);
+    }
+
 }

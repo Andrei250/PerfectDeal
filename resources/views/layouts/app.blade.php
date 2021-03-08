@@ -69,6 +69,17 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                                <a id="notification-dropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa fa-bell"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right px-2 " id="notifications-block" aria-labelledby="notification-dropdown">
+                                    Loading..
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -77,6 +88,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{route('user.myRequests')}}" class="dropdown-item">
                                         {{__('Cererile mele')}}
+                                    </a>
+
+                                    <a href="{{route('user.myNegotiations')}}" class="dropdown-item">
+                                        {{__('Propuneri contract')}}
                                     </a>
 
                                     <a href="{{route('user.myOrders')}}" class="dropdown-item">
@@ -124,9 +139,33 @@
 
 @yield('scripts')
 <script>
+    const _token_not = $('meta[name="csrf-token"]').attr('content');
 
     $(document).ready(function () {
         @yield('ready-scritps')
+
+        $('#notification-dropdown').click(function (e) {
+            let url_not = '{{route('user.getNotifications')}}';
+
+            $.ajax({
+                url: url_not,
+                type: "POST",
+                data: {
+                    _token: _token_not,
+                },
+                success: function(response) {
+                    if (response[0] === 'success') {
+                        $('#notifications-block').html('');
+
+                        response[1].forEach(element => {
+                            $('#notifications-block').append(element);
+                        });
+                    } else {
+                        $('#notifications-block').html('A aparut o eroare.');
+                    }
+                }
+            });
+        });
     });
 </script>
 </html>

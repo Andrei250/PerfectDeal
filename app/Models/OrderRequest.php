@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class OrderRequest extends Model
 {
@@ -25,6 +26,11 @@ class OrderRequest extends Model
     public static function checkHasRequest($user_id, $order_id): bool
     {
         return count(OrderRequest::where(['order_id' => $order_id, 'user_id' => $user_id])->get()) != 0;
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
     }
 
     public function getDeliveryDate(): string

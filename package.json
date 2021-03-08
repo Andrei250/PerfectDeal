@@ -30,6 +30,7 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "font-awesome": "^4.7.0",
         "latest-version": "^5.1.0"
     }
 }
