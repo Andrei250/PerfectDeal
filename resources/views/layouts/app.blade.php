@@ -79,6 +79,10 @@
                                         {{__('Cererile mele')}}
                                     </a>
 
+                                    <a href="{{route('user.myNegotiations')}}" class="dropdown-item">
+                                        {{__('Propuneri contract')}}
+                                    </a>
+
                                     <a href="{{route('user.myOrders')}}" class="dropdown-item">
                                         {{__('Ofertele mele')}}
                                     </a>
