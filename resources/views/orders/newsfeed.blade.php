@@ -39,11 +39,14 @@
         </div>
 
         <div id="orders" class="row col-md-12 mx-auto">
-            @foreach($orders as $order)
+            @forelse($orders as $order)
                 @include('orders.order_component', ['order' => $order])
                 @include('orders.order_buy_modal', ['order' => $order])
                 @include('orders.order_neg_modal', ['order' => $order])
-            @endforeach
+
+            @empty
+                <p class="alert alert-warning mx-auto">Nu aveti nicio comanda.</p>
+            @endforelse
         </div>
 
     </div>

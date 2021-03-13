@@ -33,7 +33,7 @@ class FilterController extends Controller
             $orders = $orders->get();
         }
 
-        $ans[0] = '<p class="alert alert-warning">Nu este nicio comanda cu filtere adaugate</p>';
+        $ans[0] = '<p class="alert alert-warning mx-auto">Nu este nicio comanda cu filtere adaugate</p>';
 
         if (!is_null($orders)) {
             $counter = 0;
