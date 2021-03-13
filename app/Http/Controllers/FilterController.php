@@ -33,12 +33,14 @@ class FilterController extends Controller
             $orders = $orders->get();
         }
 
-        $ans[0] = '<p class="alert alert-warning mx-auto">Nu este nicio comanda cu filtere adaugate</p>';
+        $ans[0][0] = '<p class="alert alert-warning mx-auto">Nu este nicio comanda cu filtere adaugate</p>';
 
         if (!is_null($orders)) {
             $counter = 0;
             foreach ($orders as $order) {
-                $ans[$counter++] = view('orders.order_component', ['order' => $order])->render();
+                $ans[$counter][0] = view('orders.order_component', ['order' => $order])->render();
+                $ans[$counter][1] = view('orders.order_buy_modal', ['order' => $order])->render();
+                $ans[$counter++][2] = view('orders.order_neg_modal', ['order' => $order])->render();
             }
         }
         return [$ans];

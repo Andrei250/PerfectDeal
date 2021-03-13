@@ -168,7 +168,6 @@
     const domains{{$for}}Select = $('#{{$domain}}');
     const categories{{$for}}Select = $('#{{$category}}');
     const subcategories{{$for}}Select = $('#{{$subcategory}}');
-    const _token{{$for}} = $('meta[name="csrf-token"]').attr('content');
 
     domains{{$for}}Select.on('change', function (event) {
         let slug = domains{{$for}}Select.find(":selected").attr('value');
@@ -178,7 +177,7 @@
         disableField(categories{{$for}}Select, "Categorie");
         disableField(subcategories{{$for}}Select, "Subcategorie");
 
-        makeRequest(url, _token{{$for}}, categories{{$for}}Select, "Categorie");
+        makeRequest(url, $('meta[name="csrf-token"]').attr('content'), categories{{$for}}Select, "Categorie");
     });
 
     categories{{$for}}Select.on('change', function (event) {
@@ -186,7 +185,7 @@
         let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
         url = url.replace(':tobereplaced', slug);
 
-        makeRequest(url, _token{{$for}}, subcategories{{$for}}Select, "Subcategorie");
+        makeRequest(url, $('meta[name="csrf-token"]').attr('content'), subcategories{{$for}}Select, "Subcategorie");
     });
 
 </script>

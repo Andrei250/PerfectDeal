@@ -34,8 +34,6 @@
 </div>
 
 <script>
-    const _token_neg{{$order->id}} = $('meta[name="csrf-token"]').attr('content');
-
     $('#submit-neg-{{$order->id}}').click(function (e){
         let descrip{{$order->id}} = $('#description-neg-{{$order->id}}').val();
         let url_neg{{$order->id}} = '{{route('order.makeNeg', ['order' => ':tobereplaced'])}}';
@@ -45,7 +43,7 @@
             url: url_neg{{$order->id}},
             type: "POST",
             data: {
-                _token: _token_neg{{$order->id}},
+                _token: $('meta[name="csrf-token"]').attr('content'),
                 'description': descrip{{$order->id}},
             },
             success: function(response) {
