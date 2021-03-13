@@ -10,7 +10,7 @@
         <div class="row justify-content-around w-100 h-auto mb-4">
             @foreach($domains as $domain)
                 <div class="d-flex flex-column align-items-center h-auto">
-                    <img src="{{$domain->getIconPath()}}" class="rounded-circle col-md-8" style="cursor:pointer"
+                    <img src="{{$domain->getIconPath()}}" class="rounded-circle col-md-4" style="cursor:pointer"
                          onclick="getDomain('{{$domain->getSlug()}}')"/>
 
                     <h4 class="text-center font-weight-bold">{{$domain->getName()}}</h4>
