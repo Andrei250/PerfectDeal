@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'company'])->group(function () {
     Route::post('/category/{category:slug}/getSubcategories', [CategoryController::class, 'getSubcategories'])->name('category.getSubcategories');
 });

@@ -57,8 +57,6 @@
 </div>
 
 <script>
-    const _token{{$order->id}} = $('meta[name="csrf-token"]').attr('content');
-
     $('#submit-request-{{$order->id}}').click(function (e){
         let quantity{{$order->id}} = $('#quantity-{{$order->id}}').val();
         let date{{$order->id}} = $('#date-{{$order->id}}').val();
@@ -71,7 +69,7 @@
             url: url{{$order->id}},
             type: "POST",
             data: {
-                _token: _token{{$order->id}},
+                _token: $('meta[name="csrf-token"]').attr('content'),
                 'quantity': quantity{{$order->id}},
                 'date': date{{$order->id}},
                 'pickup-option': pickupOption{{$order->id}},

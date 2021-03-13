@@ -69,7 +69,7 @@ class Order extends Model
         $this->min_quantity = $min_quantity;
         $this->expire_date = $expire_date;
         $this->status = 'Available';
-        $this->img_path = 'storage/uploads/orders/default_order.png';
+        $this->img_path = 'uploads/orders/default_order.png';
         $this->user_id = Auth::user()->id;
         $this->created_at = now();
         $this->updated_at = now();

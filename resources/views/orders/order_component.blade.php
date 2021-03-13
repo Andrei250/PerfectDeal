@@ -13,7 +13,7 @@
                     <h4 class="text-md-left mb-1">{{!is_null($order) ? $order->getTitle() : "Fara Titlu"}}</h4>
                     <h4 class="font-weight-bold"> Pret: {{!is_null($order) ? $order->getPrice() : "Fara pret"}}</h4>
                 </div>
-                <div onclick="checkItem(this)" data-value="1" class="heart"></div>
+{{--                <div onclick="checkItem(this)" data-value="1" class="heart"></div>--}}
             </div>
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>

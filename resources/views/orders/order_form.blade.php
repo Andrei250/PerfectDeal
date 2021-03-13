@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <input id="{{$title}}" type="text" class="form-control @error($title) is-invalid @enderror"
                    name="{{$title}}"
-                   value="{{ is_null(old($title)) ? $first_title : old($title) }}" required autofocus>
+                   value="{{ is_null(old($title)) ? $first_title : old($title) }}" required>
 
             @error($title)
             <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
         <div class="col-md-12">
             <input id="{{$price}}" type="number" class="form-control @error($price) is-invalid @enderror"
                    name="{{$price}}"
-                   value="{{ is_null(old($price)) ? $first_price : old($price) }}" required autofocus>
+                   value="{{ is_null(old($price)) ? $first_price : old($price) }}" required>
 
             @error($price)
             <span class="invalid-feedback" role="alert">
@@ -80,8 +80,7 @@
         <div class="col-md-12">
             <input id="{{$quantity}}" type="number" class="form-control @error($quantity) is-invalid @enderror"
                    name="{{$quantity}}" value="{{ is_null(old($quantity)) ? $first_quantity : old($quantity) }}"
-                   required
-                   autofocus>
+                   required>
 
             @error($quantity)
             <span class="invalid-feedback" role="alert">
@@ -99,8 +98,7 @@
             <input id="{{$min_quantity}}" type="number"
                    class="form-control @error($min_quantity) is-invalid @enderror"
                    name="{{$min_quantity}}"
-                   value="{{ is_null(old($min_quantity)) ? $first_min_quantity : old($min_quantity) }}" required
-                   autofocus>
+                   value="{{ is_null(old($min_quantity)) ? $first_min_quantity : old($min_quantity) }}" required>
 
             @error($min_quantity)
             <span class="invalid-feedback" role="alert">
@@ -120,7 +118,7 @@
             <input class="form-control @error($expire_date) is-invalid @enderror" type="date" id="{{$expire_date}}"
                    name="{{$expire_date}}"
                    value="{{is_null(old($expire_date)) ? $first_expire_date : old($expire_date)}}"
-                   required autofocus>
+                   required>
 
             @error($expire_date)
             <span class="invalid-feedback" role="alert">
@@ -138,8 +136,7 @@
 
         <div class="col-md-12">
         <textarea id="{{$description}}" type="text" class="form-control @error($description) is-invalid @enderror"
-                  name="{{$description}}" required
-                  autofocus>{{ is_null(old($description)) ? $first_description : old($description) }}</textarea>
+                  name="{{$description}}" required>{{ is_null(old($description)) ? $first_description : old($description) }}</textarea>
 
             @error($description)
             <span class="invalid-feedback" role="alert">
@@ -171,7 +168,6 @@
     const domains{{$for}}Select = $('#{{$domain}}');
     const categories{{$for}}Select = $('#{{$category}}');
     const subcategories{{$for}}Select = $('#{{$subcategory}}');
-    const _token{{$for}} = $('meta[name="csrf-token"]').attr('content');
 
     domains{{$for}}Select.on('change', function (event) {
         let slug = domains{{$for}}Select.find(":selected").attr('value');
@@ -181,7 +177,7 @@
         disableField(categories{{$for}}Select, "Categorie");
         disableField(subcategories{{$for}}Select, "Subcategorie");
 
-        makeRequest(url, _token{{$for}}, categories{{$for}}Select, "Categorie");
+        makeRequest(url, $('meta[name="csrf-token"]').attr('content'), categories{{$for}}Select, "Categorie");
     });
 
     categories{{$for}}Select.on('change', function (event) {
@@ -189,7 +185,7 @@
         let url = '{{route('category.getSubcategories', ['category' => ':tobereplaced'])}}';
         url = url.replace(':tobereplaced', slug);
 
-        makeRequest(url, _token{{$for}}, subcategories{{$for}}Select, "Subcategorie");
+        makeRequest(url, $('meta[name="csrf-token"]').attr('content'), subcategories{{$for}}Select, "Subcategorie");
     });
 
 </script>
