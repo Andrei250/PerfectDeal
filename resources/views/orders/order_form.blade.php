@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <input id="{{$title}}" type="text" class="form-control @error($title) is-invalid @enderror"
                    name="{{$title}}"
-                   value="{{ is_null(old($title)) ? $first_title : old($title) }}" required autofocus>
+                   value="{{ is_null(old($title)) ? $first_title : old($title) }}" required>
 
             @error($title)
             <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
         <div class="col-md-12">
             <input id="{{$price}}" type="number" class="form-control @error($price) is-invalid @enderror"
                    name="{{$price}}"
-                   value="{{ is_null(old($price)) ? $first_price : old($price) }}" required autofocus>
+                   value="{{ is_null(old($price)) ? $first_price : old($price) }}" required>
 
             @error($price)
             <span class="invalid-feedback" role="alert">
@@ -80,8 +80,7 @@
         <div class="col-md-12">
             <input id="{{$quantity}}" type="number" class="form-control @error($quantity) is-invalid @enderror"
                    name="{{$quantity}}" value="{{ is_null(old($quantity)) ? $first_quantity : old($quantity) }}"
-                   required
-                   autofocus>
+                   required>
 
             @error($quantity)
             <span class="invalid-feedback" role="alert">
@@ -99,8 +98,7 @@
             <input id="{{$min_quantity}}" type="number"
                    class="form-control @error($min_quantity) is-invalid @enderror"
                    name="{{$min_quantity}}"
-                   value="{{ is_null(old($min_quantity)) ? $first_min_quantity : old($min_quantity) }}" required
-                   autofocus>
+                   value="{{ is_null(old($min_quantity)) ? $first_min_quantity : old($min_quantity) }}" required>
 
             @error($min_quantity)
             <span class="invalid-feedback" role="alert">
@@ -120,7 +118,7 @@
             <input class="form-control @error($expire_date) is-invalid @enderror" type="date" id="{{$expire_date}}"
                    name="{{$expire_date}}"
                    value="{{is_null(old($expire_date)) ? $first_expire_date : old($expire_date)}}"
-                   required autofocus>
+                   required>
 
             @error($expire_date)
             <span class="invalid-feedback" role="alert">
@@ -138,8 +136,7 @@
 
         <div class="col-md-12">
         <textarea id="{{$description}}" type="text" class="form-control @error($description) is-invalid @enderror"
-                  name="{{$description}}" required
-                  autofocus>{{ is_null(old($description)) ? $first_description : old($description) }}</textarea>
+                  name="{{$description}}" required>{{ is_null(old($description)) ? $first_description : old($description) }}</textarea>
 
             @error($description)
             <span class="invalid-feedback" role="alert">
