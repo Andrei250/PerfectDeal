@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class FilterController extends Controller
 {
-    public function newsfeedFilters(Request $request) {
+    public function newsfeedFilters(Request $request): array
+    {
         $orders = null;
 
         if (!isset($request['domain']) || is_null($request['domain']) || $request['domain'] == 'none') {
